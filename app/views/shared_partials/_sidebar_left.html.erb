@@ -1,0 +1,78 @@
+<!-- Left Sidebar -->
+<aside id="leftsidebar" class="sidebar">
+  <!-- User Info -->
+  <div class="user-info">
+    <div class="image">
+      <% if user.image.nil? %>
+        <%= image_tag "user.png" %>
+      <% else %>
+        <img src="<%= user.image %>" width="50" height="50">
+      <% end %>
+    </div>
+    <div class="info-container">
+      <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Hey there, <%= user.name %>!
+      </div>
+      <div class="email"><%= user ? user.email : "Email Address is not known yet" %></div>
+    </div>
+  </div>
+  <!-- #User Info -->
+  <!-- Menu -->
+  <div class="menu">
+    <ul class="list">
+      <li class="header">MAIN NAVIGATION</li>
+      <li class="active">
+        <a href="/tables">
+          <i class="material-icons">grid_on</i>
+          <span>My Tables</span>
+        </a>
+      </li>
+      <li>
+          <a href="/collections">
+              <i class="material-icons">folder</i>
+              <span>Collections</span>
+          </a>
+      </li>
+      <li>
+          <a href="/settings">
+              <i class="material-icons">settings</i>
+              <span>Settings</span>
+          </a>
+      </li>
+      <li>
+          <a href="/logout">
+              <i class="material-icons">input</i>
+              <span>Sign out</span>
+          </a>
+      </li>
+      <li class="header">Add New Entities</li>
+      <li>
+          <a href="/tables/new">
+              <i class="material-icons">add</i>
+              <i class="material-icons">grid_on</i>
+              <span>New Table</span>
+          </a>
+      </li>
+      <li>
+          <a href="/collections/new">
+              <i class="material-icons">add</i>
+              <i class="material-icons">folder</i>
+              <span>New Collection</span>
+          </a>
+      </li>
+
+    </ul>
+  </div>
+  <!-- #Menu -->
+  <!-- Footer -->
+  <div class="legal">
+      <div class="copyright">
+          &copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+      </div>
+      <div class="version">
+          <b>Version: </b> 1.0.5
+      </div>
+  </div>
+  <!-- #Footer -->
+</aside>
+<!-- #END# Left Sidebar -->

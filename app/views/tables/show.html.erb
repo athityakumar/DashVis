@@ -1,0 +1,37 @@
+<%= csrf_meta_tags %>
+
+<% @current_user[:color_scheme] ||= 'black' %>
+
+<body class="theme-<%= @current_user[:color_scheme] %>">
+  <%= render 'shared_partials/loader.html.erb', color: @current_user[:color_scheme] %>
+  <%= render 'shared_partials/header.html.erb' %>
+
+  <section>
+    <%= render 'shared_partials/sidebar_left.html.erb', user: @current_user %>
+    <%= render 'shared_partials/sidebar_right.html.erb', color: @current_user[:color_scheme] %>
+  </section>
+
+  <%= render 'shared_partials/tab_panel.html.erb',
+    name: @table.name,
+    description: @table.description,
+    edit_access: true,
+    active_tab: 'TABLE',
+    tabs: [
+      {text: 'TABLE', icon: 'grid_on', link: "/tables/#{@table.id}"},
+      {text: 'CHART', icon: 'pie_chart_outlined', link: "/tables/#{@table.id}/charts"},
+      {text: 'SETTINGS', icon: 'settings', link: "/tables/#{@table.id}/edit"}
+    ] %>
+
+  <section class="content" style="margin-top: 0px;">
+    <%= render 'shared_partials/datatable.html.erb',
+      name: '',
+      description: '',
+      table_id: @table.id,
+      post_url: "/tables/datatable_server_side/#{@table.id}",
+      filepath: "/tables/#{@table.id}",
+      edit_access: true,
+      vectors: ['Action', 'SNo'] + @df.vectors.to_a, access: {read: true, write: false},
+      vectors_with_index: @table.columns.map { |col| [col.name, col.id] },
+      download_filename: "#{@table.name}_#{Time.now.strftime('%b_%d_%Y_%H_%m_%S')}" %>
+  </section>
+</body>

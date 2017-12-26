@@ -1,0 +1,115 @@
+<%= csrf_meta_tags %>
+
+<% @current_user[:color_scheme] ||= 'black' %>
+
+<body class="theme-<%= @current_user[:color_scheme] %>">
+  <%= render 'shared_partials/loader.html.erb', color: @current_user[:color_scheme] %>
+  <%= render 'shared_partials/header.html.erb' %>
+
+  <section>
+    <%= render 'shared_partials/sidebar_left.html.erb', user: @current_user %>
+    <%= render 'shared_partials/sidebar_right.html.erb', color: @current_user[:color_scheme] %>
+  </section>
+
+  <%= render 'shared_partials/tab_panel.html.erb',
+    name: @table.name,
+    description: @table.description,
+    edit_access: true,
+    active_tab: 'SETTINGS',
+    tabs: [
+      {text: 'TABLE', icon: 'grid_on', link: "/tables/#{@table.id}"},
+      {text: 'CHART', icon: 'pie_chart_outlined', link: "/tables/#{@table.id}/charts"},
+      {text: 'SETTINGS', icon: 'settings', link: "/tables/#{@table.id}/edit"}
+    ] %>
+
+  <section class="content" style="margin-top: 0px;">
+        <div class="container-fluid">
+            <!-- Body Copy -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card" data-step="1" data-intro="This is your settings form.">
+                        <div class="header">
+                            <%= render 'shared_partials/alert.html.erb', alert: flash %>
+                            <h2>
+                                SETTINGS
+                            </h2>
+                        </div>
+                        <div class="body" style="margin-top: -70px">
+          <form id="settings" method="POST" action="/tables/<%= @table.id %>/edit">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="body">
+                            <h2 class="card-inside-title">Table Name</h2>
+              <div class="input-group">
+                  <div class="form-line">
+                      <input type="text" class="form-control" name="name" placeholder="YouTubers" value="<%= @table.name %>" required autofocus>
+                  </div>
+              </div>
+            </div>
+            <div class="body">
+
+              <h2 class="card-inside-title">Table Description</h2>
+              <div class="input-group">
+
+
+                              <div class="form-group">
+                                  <div class="form-line">
+                                      <textarea name="description" rows="4" class="form-control no-resize" placeholder="A list of YouTubers, video categories and video links." required><%= @table.description %></textarea>
+                                  </div>
+                              </div>
+                          </div>
+                  </div>
+
+
+
+
+<!--                         <div class="body">
+                            <h2 class="card-inside-title">Table's Collections</h2>
+              <div class="input-group">
+                  <div class="form-line">
+                  <select class="form-control show-tick" multiple="multiple" data-live-search="true" data-selected-text-format="count > 3" title="Choose collections" data-actions-box="true" data-live-search-placeholder="Search a collection" data-multiple-separator=" " name="collections[]">
+                      <option data-content="<span class='label btn-color'>Mustard</span>" selected>1</option>
+                      <option data-content="<span class='label btn-color'>Kitchen</span>" selected>2</option>
+                      <option data-content="<span class='label btn-color'>Beard</span>">3</option>
+                      <option data-content="<span class='label btn-color'>Moustache</span>">4</option>
+
+
+                  </select>
+
+
+
+                  </div>
+              </div>
+            </div>
+
+ -->
+
+
+
+
+                </div>
+
+
+
+              <div class="row" style="margin-top: 100px">
+                  <div class="col-xs-6 col-md-2 col-md-offset-4">
+                      <a class="btn btn-block btn-color waves-effect" href="/tables/<%= @table.id %>"> <i class="material-icons">cancel</i><span><strong>Cancel</strong></span></a>
+                  </div>                 
+
+                  <div class="col-xs-6 col-md-2">
+                      <button class="btn btn-block btn-color waves-effect" type="submit"><span><strong>Save</strong> &nbsp; </span><i class="material-icons">save</i></button>
+                  </div>
+</div>
+          </form>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Body Copy -->
+          </div>
+        </section>
+</body>

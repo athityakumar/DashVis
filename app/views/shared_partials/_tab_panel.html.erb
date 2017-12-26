@@ -1,0 +1,36 @@
+<section class="content" style="margin-top: 70px;">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="header">
+        <h2>
+          <%= name %>
+          <small>
+            <%= description %>
+          </small>
+        </h2>
+
+        <% if edit_access %>
+          <div class="btn-group" style="margin-top: 10px">
+            <a class="btn btn-color delete-table" href="#" data-url="/tables/<%= @table.id %>/delete" data-name="<%= @table.name %>" data-type="ajax-loader"><i class="material-icons">delete</i> <span>Delete table</span>
+            </a>
+          </div>
+        <% end %>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+          <% tabs.each_with_index do |tab, i| %>
+            <% if tab[:text] == active_tab %>
+              <li role="presentation" class="active">
+                <a><i class="material-icons"><%= tab[:icon] %></i> <%= tab[:text] %></a>
+              </li>
+            <% else %>
+              <li role="presentation" data-intro="Find the dataset's <%= tab[:text].downcase %> here.">
+                <a href="<%= tab[:link] %>"><i class="material-icons"><%= tab[:icon] %></i> <%= tab[:text] %></a>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

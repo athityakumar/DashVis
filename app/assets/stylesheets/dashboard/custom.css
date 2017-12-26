@@ -1,0 +1,15 @@
+.dropdown-menu {
+  margin-top: 0px !important;
+}
+
+.btn:hover, .btn:focus {
+  color: #000;
+}
+
+.btn-color:hover, .btn-color:focus {
+  color: #fff;
+}
+
+.alert .close{
+  color: #fff;
+}

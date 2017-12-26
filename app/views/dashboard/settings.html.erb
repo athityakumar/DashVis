@@ -1,0 +1,184 @@
+<%= csrf_meta_tags %>
+
+<% @current_user[:color_scheme] ||= 'black' %>
+
+<body class="theme-<%= @current_user[:color_scheme] %>">
+  <%= render 'shared_partials/loader.html.erb', color: @current_user[:color_scheme] %>
+  <%= render 'shared_partials/header.html.erb' %>
+
+  <section>
+    <%= render 'shared_partials/sidebar_left.html.erb', user: @current_user %>
+    <%= render 'shared_partials/sidebar_right.html.erb', color: @current_user[:color_scheme] %>
+  </section>
+
+  <%= render 'shared_partials/tab_panel.html.erb',
+    name: 'Dashboard',
+    description: 'The master table that contains data about all your other tables.',
+    edit_access: false,
+    post_url: 1,
+    active_tab: 'SETTINGS',
+    tabs: [
+      {text: 'TABLE', icon: 'grid_on', link: '/tables'},
+      {text: 'CHARTS', icon: 'pie_chart_outlined', link: '/charts'},
+      {text: 'SETTINGS', icon: 'settings', link: '/settings'}
+    ] %>
+
+
+  <section class="content" style="margin-top: 0px;">
+        <div class="container-fluid">
+            <!-- Body Copy -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card" data-step="1" data-intro="This is your settings form.">
+                        <div class="header">
+                            <%= render 'shared_partials/alert.html.erb', alert: flash %>
+                            <h2>
+                                SETTINGS
+                            </h2>
+                        </div>
+                        <div class="body">
+
+<!-- 
+                            <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal">MODAL - DEFAULT SIZE</button>
+                            <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#largeModal">MODAL - LARGE SIZE</button>
+                            <button type="button" class="btn btn-default waves-effect" data-toggle="modal" data-target="#smallModal">MODAL - SMALL SIZE</button>
+ -->
+
+          <form id="settings" method="POST" action="/dashboard/settings">
+              <%= render 'shared_partials/alert.html.erb',
+                alert: {
+                  message: "Did you know? The data below has been gathered from the social media account(s) that you've linked with this account.",
+                  dismissible: false
+
+                }  %>
+            <div class="row">
+                                <div class="col-sm-4">
+                                  <p> <b> Choose your name </b> </p>
+                                  <select name="name" class="form-control show-tick" data-live-search="true" data-live-search-placeholder="Search">
+                                    <option value="<%= @current_user.name %>" selected><%= @current_user.name %></option>
+                                    <% @current_user.possible_names.each do |name| %>
+                                      <option value="<%= name %>"><%= name %></option>
+                                    <% end %>
+                                    <option value="">(Custom)</option>
+                                  </select>
+                                </div>
+                                <div class="col-sm-4">
+                                  <p> <b> Or, set a custom display name </b> </p>
+                                  <input class="form-control" type="text" name="name" value="<%= @current_user.name %>">
+                                </div>
+                                <div class="col-sm-4">
+                                  <p> <b> Choose your email address </b> </p>
+
+                                    <select class="form-control show-tick" data-live-search="true" data-live-search-placeholder="Search" name="email" <%= 'disabled' if @current_user.possible_emails.count.zero? %>>
+                                        <option selected><%= @current_user.email %></option>
+                                        <% @current_user.possible_emails.each do |email| %>
+                                          <option><%= email %></option>
+                                        <% end %>
+                                    </select>
+                                  </div>
+
+
+                                <div class="col-sm-12">
+                                  <p> <b> Choose your Gravitar Image </b> </p>
+
+                                    <select class="form-control show-tick" data-live-search="true" data-live-search-placeholder="Search" name="image" <%= 'disabled' if @current_user.possible_images.count == 1 %>>
+                                        <option data-content="<img src='<%= @current_user.image %>' style='width:100px; height: 100px;'>" selected><%= @current_user.image %></option>
+                                        <% @current_user.possible_images.each do |image, platform| %>
+                                          <option data-content="<img src='<%= image %>' style='width:100px; height: 100px;'> &nbsp; <span class='label btn-color'><%= platform %></span>"><%= image %></option>
+                                        <% end %>
+                                    </select>
+                                  </div>
+
+
+<!--                                     <select class="form-control show-tick" multiple="multiple" data-live-search="true" data-selected-text-format="count > 3" title="Choose collections" data-actions-box="true" data-live-search-placeholder="Search a collection" data-multiple-separator=" " name="sauce[]" data-value="1">
+                                        <option data-content="<img src='https://lh6.googleusercontent.com/-LN4oYGRQ6yQ/AAAAAAAAAAI/AAAAAAAAI1Q/y8Jvyjs2Kc0/photo.jpg' style='width:20px; height: 20px;'> &nbsp; <span class='label btn-color'>Mustard</span> athitya@gmail.com" selected>Mustard</option>
+                                        <option data-content="<img src='https://lh6.googleusercontent.com/-LN4oYGRQ6yQ/AAAAAAAAAAI/AAAAAAAAI1Q/y8Jvyjs2Kc0/photo.jpg' style='width:20px; height: 20px;'> &nbsp; <span class='label btn-color'>Ketchup</span> athiya@gmail.com" selected>Ketchup</option>
+                                        <option data-content="<img src='https://lh6.googleusercontent.com/-LN4oYGRQ6yQ/AAAAAAAAAAI/AAAAAAAAI1Q/y8Jvyjs2Kc0/photo.jpg' style='width:20px; height: 20px;'> &nbsp; <span class='label btn-color'>Relish</span> athityakumar@gmail.com">Relish</option>
+                                        <option data-content="<img src='https://lh6.googleusercontent.com/-LN4oYGRQ6yQ/AAAAAAAAAAI/AAAAAAAAI1Q/y8Jvyjs2Kc0/photo.jpg' style='width:20px; height: 20px;'> &nbsp; <span class='label btn-color'>Onions</span> ceo@gmail.com">Onions</option>
+
+                                    </select>
+ -->                                
+</div>
+              <div class="row" style="margin-top: 100px">
+                  <div class="col-xs-6 col-xs-offset-3 col-md-2 col-md-offset-5">
+                      <button class="btn btn-block bg-blue waves-effect" type="submit"><strong>SAVE</strong> &nbsp; <i class="material-icons" style="margin-top: -0px;">save</i></button>
+                  </div>
+</div>
+              <div class="row" style="margin-top: 30px;">
+
+                  <div class="col-md-3 col-xs-6">
+                      <p style="text-align: center;"><b>(<%= @current_user.provider_linked_message('google_oauth2') %>)</b> </p>
+
+                      <a class="btn btn-block bg-red waves-effect" href="/auth/google_oauth2"><strong><i class="fa fa-google fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
+                  </div>
+                  <div class="col-md-3 col-xs-6">
+                      <p style="text-align: center;"><b>(<%= @current_user.provider_linked_message('facebook') %>)</b> </p>
+
+                      <a class="btn btn-block bg-indigo waves-effect" href="/auth/facebook"><strong><i class="fa fa-facebook fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
+                  </div>
+                  <div class="col-md-3 col-xs-6">
+                      <p style="text-align: center;"><b>(<%= @current_user.provider_linked_message('linkedin') %>)</b> </p>
+
+                      <a class="btn btn-block bg-blue waves-effect" href="/auth/linkedin"><strong><i class="fa fa-linkedin fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
+                  </div>
+                  <div class="col-md-3 col-xs-6">
+                      <p style="text-align: center;"><b>(<%= @current_user.provider_linked_message('github') %>)</b> </p>
+
+                      <a class="btn btn-block bg-black waves-effect" href="/auth/github"><strong><i class="fa fa-github fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
+                  </div>
+              </div>
+          </form>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Body Copy -->
+          </div>
+        </section>
+
+</body>
+<script>
+$(document).ready(function () {   // Help for the HTML4 version.
+  $('select[name=name]').change(function () {
+      $('input[name=name]').val($(this).val());
+  });
+});
+
+// $(function () {
+
+//   var data = $('#settings').serialize();
+
+//   $('#settings').submit(function(event){
+//     $.ajax({
+//         url: "/dashboard/settings",
+//         type: "POST",
+//         data: data,
+//         dataType: "JSON",
+//         headers: {
+//           'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+//         }
+//     });
+
+//     event.preventDefault();
+//   });
+
+    // $('#settings').validate({
+    //   submitHandler: function(form) {
+    //       $.ajax({
+    //           url: "/dashboard/settings",
+    //           type: "POST",
+    //           data: $(form).serialize(),
+    //           dataType: "JSON",
+    //           headers: {
+    //             'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+    //           }
+    //       });
+    //   }
+    // });
+// });
+</script>

@@ -1,0 +1,116 @@
+<%= csrf_meta_tags %>
+
+<% @current_user[:color_scheme] ||= 'black' %>
+
+<body class="theme-<%= @current_user[:color_scheme] %>">
+  <%= render 'shared_partials/loader.html.erb', color: @current_user[:color_scheme] %>
+  <%= render 'shared_partials/header.html.erb' %>
+
+  <section>
+    <%= render 'shared_partials/sidebar_left.html.erb', user: @current_user %>
+    <%= render 'shared_partials/sidebar_right.html.erb', color: @current_user[:color_scheme] %>
+  </section>
+
+  <section class="content" style="margin-top: 70px;">
+        <div class="container-fluid">
+            <!-- Body Copy -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card" data-step="1" data-intro="This is your settings form.">
+                        <div class="header">
+                            <%= render 'shared_partials/alert.html.erb', alert: flash %>
+                            <h2>
+                                Edit Row for '<%= @table.name %>'
+                            </h2>
+                        </div>
+                        <div class="body" style="margin-top: 0px">
+
+          <form id="settings" method="POST" action="/tables/<%= @table.id %>/edit/row/<%= @row.id %>">
+            <% @table.columns.each_with_index do |column, i| %>
+              <div class="row">
+                <div class="col-md-6 col-xs-12">
+                  <div class="body">
+                    <h2 class="card-inside-title"> Select existing value for '<%= column.name.gsub('_', ' ') %>'</h2>
+                    <div class="input-group">
+                      <select name="<%= column.name.gsub(' ', '_') %>" class="form-control show-tick" data-live-search="true" data-live-search-placeholder="Search">
+                        <% column.data.map(&:value).uniq.each do |data| %>
+                          <% if @row.data[i].value == data %>
+                            <option value="<%= data %>" selected><%= data %></option>
+                          <% else %>
+                            <option value="<%= data %>"><%= data %></option>
+                          <% end %>
+                        <% end %>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                  <div class="body">
+                    <h2 class="card-inside-title">Or, type a custom value for '<%= column.name.gsub('_', ' ') %>'</h2>
+                      <input type="text" class="form-control" name="<%= column.name.gsub(' ', '_') %>" value="<%= @row[i] %>" autofocus required>
+                  </div>
+                </div>
+
+                <script>
+                $(document).ready(function(){
+                  $('input[name=<%= column.name.gsub(' ', '_') %>]').val($('select[name=<%= column.name.gsub(' ', '_') %>]').val());
+
+                  $('select[name=<%= column.name.gsub(' ', '_') %>]').change(function () {
+                      $('input[name=<%= column.name.gsub(' ', '_') %>]').val($(this).val());
+                  });
+                });
+              </script>
+            </div>
+            <% end %>
+
+
+
+
+
+
+
+<!--                         <div class="body">
+                            <h2 class="card-inside-title">Type of Column</h2>
+                            <p class="card-inside-title">The type of column plays a crucial role.</p>
+              <div class="input-group">
+                  <div class="form-line">
+                  <select class="form-control show-tick" data-live-search="true" data-selected-text-format="count > 3" title="Choose column type" data-actions-box="true" data-live-search-placeholder="Search a column type" data-multiple-separator=" " name="datatype">
+                      <option>Text</option>
+                      <option>Number</option>
+                      <option>Category</option>
+                      <option>Hyperlink</option>
+                  </select>
+                  </div>
+              </div>
+            </div>
+ -->
+
+
+
+
+
+
+              <div class="row" style="margin-top: 100px">
+                  <div class="col-xs-6 col-md-2 col-md-offset-4">
+                      <a class="btn btn-block btn-color waves-effect" href="/tables/<%= @table.id %>"> <i class="material-icons">cancel</i><span><strong>Cancel</strong></span></a>
+                  </div>                 
+
+                  <div class="col-xs-6 col-md-2">
+                      <button class="btn btn-block btn-color waves-effect" type="submit"><span><strong>Save</strong> &nbsp; </span><i class="material-icons">save</i></button>
+                  </div>
+</div>
+          </form>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Body Copy -->
+          </div>
+        </section>
+</body>

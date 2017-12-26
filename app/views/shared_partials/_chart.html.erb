@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="header">
+    <h2>
+      <%= chart[:name] || "#{chart[:type].upcase} CHART" %>
+    </h2>
+    <p>
+      <%= chart[:description] || "#{category_columns.count} columns : #{category_columns.join(', ')}" %>
+    </p>
+    <ul class="header-dropdown m-r--5">
+      <li class="dropdown">
+        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="material-icons">more_vert</i>
+        </a>
+        <ul class="dropdown-menu pull-right">
+          <li><a href="javascript:void(0);">Action</a></li>
+          <li><a href="javascript:void(0);">Another action</a></li>
+          <li><a href="javascript:void(0);">Something else here</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="body">
+    <canvas id="chart_<%= i %>" height="150"></canvas>
+  </div>
+</div>
+
+<%= render "shared_partials/chart_js/#{chart[:type]}.html.erb",
+  i: i, category_columns: category_columns, category_datasets: category_datasets %>

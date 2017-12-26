@@ -1,0 +1,40 @@
+<%= csrf_meta_tags %>
+
+<% @current_user[:color_scheme] ||= 'black' %>
+
+<body class="theme-<%= @current_user[:color_scheme] %>">
+  <%= render 'shared_partials/loader.html.erb', color: @current_user[:color_scheme] %>
+  <%= render 'shared_partials/header.html.erb' %>
+
+  <section>
+    <%= render 'shared_partials/sidebar_left.html.erb', user: @current_user %>
+    <%= render 'shared_partials/sidebar_right.html.erb', color: @current_user[:color_scheme] %>
+  </section>
+
+  <%= render 'shared_partials/tab_panel.html.erb',
+    name: 'Dashboard',
+    description: 'The master table that contains data about all your other tables.',
+    edit_access: false,
+    post_url: 1,
+    active_tab: 'TABLE',
+    tabs: [
+      {text: 'TABLE', icon: 'grid_on', link: '/tables'},
+      {text: 'CHARTS', icon: 'pie_chart_outlined', link: '/charts'},
+      {text: 'SETTINGS', icon: 'settings', link: '/settings'}
+    ] %>
+
+
+  <section class="content" style="margin-top: 0px;">
+    <% if flash %>
+      <%= render 'shared_partials/alert.html.erb', alert: flash %>
+    <% end %>
+
+    <%= render 'shared_partials/datatable.html.erb',
+      name: "Dashboard", post_url: '/datatable_server_side',
+      description: "A data representation of all your existing tables",
+      filepath: '/tables', vectors_with_index: nil,
+      edit_access: false,
+      vectors: ['Action'] + @vectors, access: {read: true, write: false},
+      download_filename: "Visitors_#{Time.now.strftime('%b_%d_%Y_%H_%m_%S')}" %>
+  </section>
+</body>

@@ -1,0 +1,48 @@
+<script type="text/javascript">
+  $(function (){
+    new Chart(document.getElementById("chart_<%= i %>").getContext("2d"), {
+      type: 'line',
+      data: {
+        datasets: [
+          <% category_datasets.each_with_index do |category, j| %>
+            <% if j == category_datasets.count-1 %>
+              {
+                data: [<%= category.values.join(", ") %>],
+                label: "<%= category_columns[j] %>",
+                borderColor: "<%= "rgb(#{rand(255)}, #{rand(255)}, #{rand(255)})" %>",
+                backgroundColor: "<%= "rgba(#{rand(255)}, #{rand(255)}, #{rand(255)}, #{rand})" %>",
+                pointBorderColor: "<%= "rgb(#{rand(255)}, #{rand(255)}, #{rand(255)})" %>",
+                pointBackgroundColor: "<%= "rgb(#{rand(255)}, #{rand(255)}, #{rand(255)})" %>",
+                pointBorderWidth: 1
+              }
+            <% else %>
+              {
+                data: [<%= category.values.join(", ") %>],
+                label: "<%= category_columns[j] %>",
+                borderColor: "<%= "rgb(#{rand(255)}, #{rand(255)}, #{rand(255)})" %>",
+                backgroundColor: "<%= "rgba(#{rand(255)}, #{rand(255)}, #{rand(255)}, #{rand})" %>",
+                pointBorderColor: "<%= "rgb(#{rand(255)}, #{rand(255)}, #{rand(255)})" %>",
+                pointBackgroundColor: "<%= "rgb(#{rand(255)}, #{rand(255)}, #{rand(255)})" %>",
+                pointBorderWidth: 1
+              },
+            <% end %>
+          <% end %>
+        ],
+        labels: [
+          <% category = category_datasets.first.keys %>
+          <% category.each_with_index do |k, l| %>
+            <% if l == category.count-1 %>
+              "<%= k %>"
+            <% else %>
+              "<%= k %>",
+            <% end %>
+          <% end %>
+        ]
+      },
+      options: {
+        responsive: true,
+        legend: false
+      }
+    });
+  });
+</script>

@@ -1,0 +1,94 @@
+<%= csrf_meta_tags %>
+
+<body class="login-page">
+  <div class="login-box">
+  <div class="logo">
+      <a href="javascript:void(0);">Admin<b>BSB</b></a>
+      <small>Admin BootStrap Based - Material Design</small>
+  </div>
+  <div class="card">
+      <div class="body">
+          <form id="sign_in" method="POST" action="/sign_in">
+              <% if @alert %>
+                <%= render 'shared_partials/alert.html.erb', alert: @alert %>
+              <% end %>
+              <div class="msg">Sign in to start your session</div>
+              <div class="input-group">
+                  <span class="input-group-addon">
+                      <i class="material-icons">email</i>
+                  </span>
+                  <div class="form-line">
+                      <input type="text" class="form-control" name="email_id" placeholder="Email Address" value="<%= params[:email_id] %>" required autofocus>
+                  </div>
+              </div>
+              <div class="input-group">
+                  <span class="input-group-addon">
+                      <i class="material-icons">lock</i>
+                  </span>
+                  <div class="form-line">
+                      <input type="password" class="form-control" name="password" placeholder="Password" value="<%= params[:password] %>" required>
+                  </div>
+              </div>
+              <div class="row">
+<!--                   <div class="col-xs-8 p-t-5">
+                      <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                      <label for="rememberme">Remember Me</label>
+                  </div> -->
+                  <div class="col-xs-12">
+                      <button class="btn btn-block bg-blue waves-effect" type="submit"><strong>SIGN IN</strong> &nbsp; <i class="material-icons" style="margin-top: -10px;">send</i></button>
+                  </div>
+                  <div class="col-xs-3">
+                      <a class="btn btn-block bg-red waves-effect" href="/auth/google_oauth2?time=<%= Time.now.strftime('%b_%d_%Y_%H_%m_%S') %>"><strong><i class="fa fa-google fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
+                  </div>
+                  <div class="col-xs-3">
+                      <a class="btn btn-block bg-indigo waves-effect" href="/auth/facebook"><strong><i class="fa fa-facebook fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
+                  </div>
+                  <div class="col-xs-3">
+                      <a class="btn btn-block bg-blue waves-effect" href="/auth/linkedin"><strong><i class="fa fa-linkedin fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
+                  </div>
+                  <div class="col-xs-3">
+                      <a class="btn btn-block bg-black waves-effect" href="/auth/github"><strong><i class="fa fa-github fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
+                  </div>
+              </div>
+              <div class="row m-t-15 m-b--20">
+                  <div class="col-xs-12">
+                      <a href="/sign_up">Don't have an account yet? Sign up now.</a>
+                  </div>
+<!--                   <div class="col-xs-6 align-right">
+                      <a href="forgot-password.html">Forgot Password?</a>
+                  </div>
+ -->              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+
+    $('#sign_in').validate({
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.input-group').append(error);
+        },
+        submitHandler: function(form) {
+            $.ajax({
+                url: "/sign_in",
+                type: "POST",
+                data: $(form).serialize(),
+                dataType: "JSON",
+                headers: {
+                  'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+                }
+            });
+        }
+    });
+});
+
+</script>
+</body>

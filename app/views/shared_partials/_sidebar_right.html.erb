@@ -1,0 +1,81 @@
+<!-- Right Sidebar -->
+<aside id="rightsidebar" class="right-sidebar">
+  <ul class="nav nav-tabs tab-nav-right" role="tablist">
+    <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
+    <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
+      <ul class="demo-choose-skin">
+        <% ['Red', 'Deep Purple', 'Indigo', 'Blue', 'Teal', 'Orange', 'Deep Orange', 'Brown', 'Blue Grey', 'Black'].each do |color_option|
+          color_option_code = color_option.downcase.gsub(' ', '-')
+        %>
+          <li data-theme="<%= color_option_code %>" class="<%= color == color_option_code ? 'active' : '' %>">
+            <div class="<%= color_option_code %>"></div>
+            <span><%= color_option %></span>
+          </li>
+        <% end %>
+<!--         <li data-theme="red">
+          <div class="red"></div>
+          <span>Red</span>
+        </li>
+        <li data-theme="deep-purple">
+          <div class="deep-purple"></div>
+          <span>Deep Purple</span>
+        </li>
+        <li data-theme="indigo">
+          <div class="indigo"></div>
+          <span>Indigo</span>
+        </li>
+        <li data-theme="blue">
+          <div class="blue"></div>
+          <span>Blue</span>
+        </li>
+        <li data-theme="teal">
+          <div class="teal"></div>
+          <span>Teal</span>
+        </li>
+        <li data-theme="orange">
+          <div class="orange"></div>
+          <span>Orange</span>
+        </li>
+        <li data-theme="deep-orange">
+          <div class="deep-orange"></div>
+          <span>Deep Orange</span>
+        </li>
+        <li data-theme="brown">
+          <div class="brown"></div>
+          <span>Brown</span>
+        </li>
+        <li data-theme="blue-grey">
+          <div class="blue-grey"></div>
+          <span>Blue Grey</span>
+        </li>
+        <li data-theme="black">
+          <div class="black"></div>
+          <span>Black</span>
+        </li> -->
+      </ul>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="settings">
+      <div class="demo-settings">
+        <p>GENERAL SETTINGS</p>
+        <ul class="setting-list">
+          <li>
+            <span>Report Panel Usage</span>
+            <div class="switch">
+              <label><input type="checkbox" checked><span class="lever"></span></label>
+            </div>
+          </li>
+          <li>
+            <span>Email Redirect</span>
+            <div class="switch">
+              <label><input type="checkbox"><span class="lever"></span></label>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</aside>
+<!-- #END# Right Sidebar -->

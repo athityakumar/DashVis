@@ -1,0 +1,68 @@
+<style>
+
+
+<% { 'red' => '#F44336', 'deep-purple' => '#673AB7', 'indigo' => '#3F51B5', 'blue' => '#2196F3', 'teal' => '#009688', 'orange' => '#FF9800', 'deep-orange' => '#FF5722', 'brown' => '#795548', 'blue-grey' => '#607D8B', 'black' => '#000000' }.each do |color, code| %>
+
+  .theme-<%= color %> .navbar, .theme-<%= color %> .btn-color, .theme-<%= color %> .pagination li.active a, .theme-<%= color %> .sidebar .user-info, .theme-<%= color %> .alert {
+    background-color: <%= code %>; }
+
+  .theme-<%= color %> .nav-tabs > li > a:before {
+    border-bottom-color: <%= code %>;
+  }
+
+  .theme-<%= color %> .navbar-brand {
+    color: #fff; }
+    .theme-<%= color %> .navbar-brand:hover {
+      color: #fff; }
+    .theme-<%= color %> .navbar-brand:active {
+      color: #fff; }
+    .theme-<%= color %> .navbar-brand:focus {
+      color: #fff; }
+
+  .theme-<%= color %> .nav > li > a {
+    color: #fff; }
+    .theme-<%= color %> .nav > li > a:hover {
+      background-color: transparent; }
+    .theme-<%= color %> .nav > li > a:focus {
+      background-color: transparent; }
+
+  .theme-<%= color %> .nav .open > a {
+    background-color: transparent; }
+    .theme-<%= color %> .nav .open > a:hover {
+      background-color: transparent; }
+    .theme-<%= color %> .nav .open > a:focus {
+      background-color: transparent; }
+
+  .theme-<%= color %> .bars {
+    color: #fff; }
+
+  .theme-<%= color %> .sidebar .menu .list li.active {
+    background-color: transparent; }
+    .theme-<%= color %> .sidebar .menu .list li.active > :first-child i, .theme-<%= color %> .sidebar .menu .list li.active > :first-child span {
+      color: <%= code %>; }
+
+  .theme-<%= color %> .sidebar .menu .list .toggled {
+    background-color: transparent; }
+
+  .theme-<%= color %> .sidebar .menu .list .ml-menu {
+    background-color: transparent; }
+
+  .theme-<%= color %> .sidebar .legal {
+    background-color: #fff; }
+    .theme-<%= color %> .sidebar .legal .copyright a {
+      color: <%= code %> !important; }
+
+
+  .theme-<%= color %> .text-color {
+    color: <%= code %>;
+  }
+<% end %>
+
+.btn-color, .btn-color a {
+  color: #fff;
+}
+
+.btn-color:hover {
+  color: #fff !important;
+}
+</style>

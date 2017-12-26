@@ -1,0 +1,40 @@
+<script type="text/javascript">
+  $(function(){
+    new Chart(document.getElementById("chart_<%= i %>").getContext("2d"), {
+      type: 'bar',
+      data: {
+        datasets: [
+          <% category_datasets.each_with_index do |category, j| %>
+            <% if j == category_datasets.count-1 %>
+              {
+                data: [<%= category.values.join(", ") %>],
+                label: "<%= category_columns[j] %>",
+                backgroundColor: "<%= "rgb(#{rand(255)}, #{rand(255)}, #{rand(255)})" %>"
+              }
+            <% else %>
+              {
+                data: [<%= category.values.join(", ") %>],
+                label: "<%= category_columns[j] %>",
+                backgroundColor: "<%= "rgb(#{rand(255)}, #{rand(255)}, #{rand(255)})" %>"
+              },
+            <% end %>
+          <% end %>
+        ],
+        labels: [
+          <% category = category_datasets.first.keys %>
+          <% category.each_with_index do |k, i| %>
+            <% if i == category.count-1 %>
+              "<%= k %>"
+            <% else %>
+              "<%= k %>",
+            <% end %>
+          <% end %>
+        ]
+      },
+      options: {
+        responsive: true,
+        legend: false
+      }
+    });
+  });
+</script>

@@ -1,0 +1,39 @@
+<%= csrf_meta_tags %>
+
+<% @current_user[:color_scheme] ||= 'black' %>
+
+<body class="theme-<%= @current_user[:color_scheme] %>">
+  <%= render 'shared_partials/loader.html.erb', color: @current_user[:color_scheme] %>
+  <%= render 'shared_partials/header.html.erb' %>
+
+  <section>
+    <%= render 'shared_partials/sidebar_left.html.erb', user: @current_user %>
+    <%= render 'shared_partials/sidebar_right.html.erb', color: @current_user[:color_scheme] %>
+  </section>
+
+  <%= render 'shared_partials/tab_panel.html.erb',
+    name: 'Dashboard',
+    description: 'The master table that contains data about all other tables.',
+    table_id: false,
+    edit_access: false,
+    active_tab: 'CHARTS',
+    tabs: [
+      {text: 'TABLE', icon: 'grid_on', link: '/tables'},
+      {text: 'CHARTS', icon: 'pie_chart_outlined', link: '/charts'},
+      {text: 'SETTINGS', icon: 'settings', link: '/settings'}
+    ] %>
+
+  <section class="content" style="margin-top: 0px;">
+    <div class="container-fluid" data-intro="Create and edit your charts here.">
+      <div class="row">
+        <% ['line', 'bar', 'pie', 'doughnut'].each_with_index do |chart_type, i| %>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <%= render 'shared_partials/chart.html.erb',
+              chart: {type: chart_type, name: nil, description: nil}, i: i,
+              category_columns: @category_columns, category_datasets: @category_datasets %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</body>
