@@ -11,7 +11,21 @@
     <%= render 'shared_partials/sidebar_right.html.erb', color: @current_user[:color_scheme] %>
   </section>
 
-  <section class="content" style="margin-top: 70px;">
+  <%= render 'shared_partials/tab_panel.html.erb',
+    name: @table.name,
+    description: @table.description,
+    edit_access: true,
+    type: 'Table',
+    id: @table.id,
+    collections: @table.collections,
+    active_tab: 'TABLE',
+    tabs: [
+      {text: 'TABLE', icon: 'grid_on', link: "/tables/#{@table.id}"},
+      {text: 'CHART', icon: 'pie_chart_outlined', link: "/tables/#{@table.id}/charts"},
+      {text: 'SETTINGS', icon: 'settings', link: "/tables/#{@table.id}/edit"}
+    ] %>
+
+  <section class="content" style="margin-top: 0px;">
         <div class="container-fluid">
             <!-- Body Copy -->
             <div class="row clearfix">

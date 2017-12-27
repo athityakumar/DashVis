@@ -11,7 +11,19 @@
     <%= render 'shared_partials/sidebar_right.html.erb', color: @current_user[:color_scheme] %>
   </section>
 
-  <section class="content" style="margin-top: 70px;">
+  <%= render 'shared_partials/tab_panel.html.erb',
+    name: @collection.name,
+    description: @collection.description,
+    edit_access: true,
+    type: 'Collection',
+    id: @collection.id,
+    active_tab: 'SETTINGS',
+    tabs: [
+      {text: 'TABLES', icon: 'grid_on', link: "/collections/#{@collection.id}"},
+      {text: 'SETTINGS', icon: 'settings', link: "/collections/#{@collection.id}/edit"}
+    ] %>
+
+  <section class="content" style="margin-top: 0px;">
         <div class="container-fluid">
             <!-- Body Copy -->
             <div class="row clearfix">
@@ -20,36 +32,29 @@
                         <div class="header">
                             <%= render 'shared_partials/alert.html.erb', alert: flash %>
                             <h2>
-                                Create new Table
+                                SETTINGS
                             </h2>
                         </div>
                         <div class="body" style="margin-top: -70px">
-
-<!-- 
-                            <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal">MODAL - DEFAULT SIZE</button>
-                            <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#largeModal">MODAL - LARGE SIZE</button>
-                            <button type="button" class="btn btn-default waves-effect" data-toggle="modal" data-target="#smallModal">MODAL - SMALL SIZE</button>
- -->
-
-          <form id="settings" method="POST" action="/tables/new">
+          <form id="settings" method="POST" action="/collections/<%= @collection.id %>/edit">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="body">
-                            <h2 class="card-inside-title">Table Name</h2>
+                            <h2 class="card-inside-title">Collection Name</h2>
               <div class="input-group">
                   <div class="form-line">
-                      <input type="text" class="form-control" name="name" placeholder="For example: YouTubers" value="<%= params[:name] %>" required autofocus>
+                      <input type="text" class="form-control" name="name" placeholder="YouTubers" value="<%= @collection.name %>" required autofocus>
                   </div>
               </div>
             </div>
             <div class="body">
 
-              <h2 class="card-inside-title">Table Description</h2>
+              <h2 class="card-inside-title">Collection Description</h2>
               <div class="input-group">
 
 
                               <div class="form-group">
                                   <div class="form-line">
-                                      <textarea name="description" rows="4" class="form-control no-resize" placeholder="For example: A list of YouTubers, video categories and video links." required><%= params[:description] %></textarea>
+                                      <textarea name="description" rows="4" class="form-control no-resize" placeholder="A list of YouTubers, video categories and video links." required><%= @collection.description %></textarea>
                                   </div>
                               </div>
                           </div>
@@ -59,19 +64,22 @@
 
 
                         <div class="body">
-                            <h2 class="card-inside-title">Add Collections to this Table</h2>
+                            <h2 class="card-inside-title">Collection's Tables</h2>
               <div class="input-group">
                   <div class="form-line">
-                    <% if @current_user.collections.empty? %>
-                      <select class="form-control show-tick" multiple="multiple" data-live-search="true" data-selected-text-format="count > 3" title="Choose collections" data-actions-box="true" data-live-search-placeholder="Search a collection" data-multiple-separator=" " name="collections[]" disabled>
+                    <% if @current_user.tables.empty? %>
+                      <select class="form-control show-tick" multiple="multiple" data-live-search="true" data-selected-text-format="count > 3" title="Choose tables" data-actions-box="true" data-live-search-placeholder="Search a table" data-multiple-separator=" " name="tables[]" disabled>
                     <% else %>
-                      <select class="form-control show-tick" multiple="multiple" data-live-search="true" data-selected-text-format="count > 3" title="Choose collections" data-actions-box="true" data-live-search-placeholder="Search a collection" data-multiple-separator=" " name="collections[]">
+                      <select class="form-control show-tick" multiple="multiple" data-live-search="true" data-selected-text-format="count > 3" title="Choose tables" data-actions-box="true" data-live-search-placeholder="Search a table" data-multiple-separator=", " name="tables[]">
 
-                      <% @current_user.collections.each do |collection| %>
-                        <option data-content="<span class='label btn-color'><%= collection.name %></span>"><%= collection.id %></option>
+                      <% @current_user.tables.each do |table| %>
+                        <option data-content="<%= table.name %>" <%= 'selected' if @collection.tables.include?(table) %>><%= table.id %></option>
                       <% end %>
                     <% end %>
                   </select>
+
+
+
                   </div>
               </div>
             </div>
@@ -87,7 +95,7 @@
 
               <div class="row" style="margin-top: 100px">
                   <div class="col-xs-6 col-md-2 col-md-offset-4">
-                      <a class="btn btn-block btn-color waves-effect" href="/tables"> <i class="material-icons">cancel</i><span><strong>Cancel</strong></span></a>
+                      <a class="btn btn-block btn-color waves-effect" href="/collections/<%= @collection.id %>"> <i class="material-icons">cancel</i><span><strong>Cancel</strong></span></a>
                   </div>                 
 
                   <div class="col-xs-6 col-md-2">

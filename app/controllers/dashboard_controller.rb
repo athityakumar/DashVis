@@ -1,10 +1,25 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user
-  before_action :get_required_data
 
   include DownloadHelper
 
   def tables
+    @df = Daru::DataFrame.new(
+      current_user.tables.all.map.with_index do |record, i|
+        {
+          'SNo'         => i+1,
+          'Name'        => "<a href='/tables/#{record.id}'>#{record.name}</a>",
+          'Description' => record.description.to_s,
+          'Rows'        => record.rows.count,
+          'Columns'     => record.columns.count,
+          'Collections' => record.collections.count
+          # 'Charts'      => record.charts.count
+        }
+      end,
+      index: @current_user.tables.all.map(&:id)
+    )
+    @vectors = @df.vectors.to_a
+
     download(@df)
   end
 
@@ -13,6 +28,24 @@ class DashboardController < ApplicationController
     @category_datasets = @category_columns.map do |category_column|
       frequency_hash(@data, @vectors, category_column)
     end
+  end
+
+  def collections
+    @df = Daru::DataFrame.new(
+      current_user.collections.all.map.with_index do |record, i|
+        {
+          'SNo'         => i+1,
+          'Name'        => "<a href='/collections/#{record.id}'>#{record.name}</a>",
+          'Description' => record.description.to_s,
+          'Tables'      => record.tables.count
+          # 'Charts'      => record.charts.count
+        }
+      end,
+      index: current_user.collections.all.map(&:id)
+    )
+    @vectors = @df.vectors.to_a
+
+    download(@df)
   end
 
   def settings
@@ -29,8 +62,23 @@ class DashboardController < ApplicationController
     end
   end
 
-  def datatable_server_side
+  def tables_server_side
     compute_datatable_params
+    @df = Daru::DataFrame.new(
+      current_user.tables.all.map.with_index do |record, i|
+        {
+          'SNo'         => i+1,
+          'Name'        => "<a href='/tables/#{record.id}'>#{record.name}</a>",
+          'Description' => record.description.to_s,
+          'Rows'        => record.rows.count,
+          'Columns'     => record.columns.count,
+          'Collections' => record.collections.count
+          # 'Charts'      => record.charts.count
+        }
+      end,
+      index: @current_user.tables.all.map(&:id)
+    )
+    @vectors = @df.vectors.to_a
 
     matching_df   = @df unless @datatable[:search]
     matching_df ||= @df.filter_rows { |row| row.to_a.join("\t").downcase.include?(@datatable[:search].downcase) }
@@ -49,6 +97,55 @@ class DashboardController < ApplicationController
     html_df['Action'] = paginated_df.map_rows_with_index do |row, i|
       table_name = row['Name'].gsub(/<\/?[^>]*>/, "")
       "<a class='text-color delete-table' href='#' data-url='/tables/#{i}/delete' data-name=\"#{table_name}\" data-type='ajax-loader'><i class='material-icons'>delete</i></a></div><a href='/tables/#{i}/edit' class='text-color'><i class='material-icons'>edit</i></a>"
+    end
+    paginated_df = html_df
+
+    respond_to do |format|
+      format.json do
+        render json: {
+          draw: params['draw'],
+          recordsTotal: @df.size,
+          recordsFiltered: matching_df.size,
+          data: paginated_df.to_json
+        }
+      end
+    end
+  end
+
+
+  def collections_server_side
+    compute_datatable_params
+    @df = Daru::DataFrame.new(
+      current_user.collections.all.map.with_index do |record, i|
+        {
+          'SNo'         => i+1,
+          'Name'        => "<a href='/collections/#{record.id}'>#{record.name}</a>",
+          'Description' => record.description.to_s,
+          'Tables'      => record.tables.count
+          # 'Charts'      => record.charts.count
+        }
+      end,
+      index: current_user.collections.all.map(&:id)
+    )
+    @vectors = @df.vectors.to_a
+
+    matching_df   = @df unless @datatable[:search]
+    matching_df ||= @df.filter_rows { |row| row.to_a.join("\t").downcase.include?(@datatable[:search].downcase) }
+    ordered_df    =
+      case @datatable[:sort_column]
+      when nil, "Action"
+        matching_df
+      else
+        matching_df.sort([@datatable[:sort_column]], ascending: @datatable[:sort_order] == 'asc')
+      end
+
+    paginated_df   = ordered_df if ordered_df.nrows == 1
+    paginated_df ||= ordered_df.row[@datatable[:start_index]..@datatable[:end_index]]
+
+    html_df = paginated_df
+    html_df['Action'] = paginated_df.map_rows_with_index do |row, i|
+      table_name = row['Name'].gsub(/<\/?[^>]*>/, "")
+      "<a class='text-color delete-collection' href='#' data-url='/collections/#{i}/delete' data-name=\"#{table_name}\" data-type='ajax-loader'><i class='material-icons'>delete</i></a></div><a href='/collections/#{i}/edit' class='text-color'><i class='material-icons'>edit</i></a>"
     end
     paginated_df = html_df
 
@@ -93,22 +190,5 @@ class DashboardController < ApplicationController
 
   def authenticate_user
     redirect_to root_path and return unless signed_in?
-  end
-
-  def get_required_data
-    @df = Daru::DataFrame.new(
-      current_user.tables.all.map.with_index do |record, i|
-        {
-          'SNo'         => i+1,
-          'Name'        => "<a href='/tables/#{record.id}'>#{record.name}</a>",
-          'Description' => record.description.to_s,
-          'Rows'        => record.rows.count,
-          'Columns'     => record.columns.count
-          # 'Charts'      => record.charts.count
-        }
-      end,
-      index: @current_user.tables.all.map(&:id)
-    )
-    @vectors = @df.vectors.to_a
   end
 end

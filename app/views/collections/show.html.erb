@@ -12,17 +12,16 @@
   </section>
 
   <%= render 'shared_partials/tab_panel.html.erb',
-    name: 'Dashboard',
-    description: 'A list of all your existing tables.',
-    edit_access: false,
-    post_url: 1,
+    name: @collection.name,
+    description: @collection.description,
+    edit_access: true,
+    type: 'Collection',
+    id: @collection.id,
     active_tab: 'TABLES',
     tabs: [
-      {text: 'TABLES', icon: 'grid_on', link: '/tables'},
-      {text: 'COLLECTIONS', icon: 'folder', link: '/collections'},
-      {text: 'SETTINGS', icon: 'settings', link: '/settings'}
+      {text: 'TABLES', icon: 'grid_on', link: "/collections/#{@collection.id}"},
+      {text: 'SETTINGS', icon: 'settings', link: "/collections/#{@collection.id}/edit"}
     ] %>
-
 
   <section class="content" style="margin-top: 0px;">
     <% if flash %>
@@ -30,11 +29,11 @@
     <% end %>
 
     <%= render 'shared_partials/datatable.html.erb',
-      name: "Dashboard", post_url: '/tables_server_side',
+      name: "Dashboard", post_url: "/collections/#{@collection.id}/datatable_server_side",
       description: "A data representation of all your existing tables",
       filepath: '/tables', vectors_with_index: nil,
       edit_access: false,
       vectors: ['Action'] + @vectors, access: {read: true, write: false},
-      download_filename: "Visitors_#{Time.now.strftime('%b_%d_%Y_%H_%m_%S')}" %>
+      download_filename: "#{@collection.name}_#{Time.now.strftime('%b_%d_%Y_%H_%m_%S')}" %>
   </section>
 </body>

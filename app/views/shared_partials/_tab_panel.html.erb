@@ -4,17 +4,45 @@
       <div class="header">
         <h2>
           <%= name %>
-          <small>
-            <%= description %>
-          </small>
-        </h2>
-
         <% if edit_access %>
-          <div class="btn-group" style="margin-top: 10px">
-            <a class="btn btn-color delete-table" href="#" data-url="/tables/<%= @table.id %>/delete" data-name="<%= @table.name %>" data-type="ajax-loader"><i class="material-icons">delete</i> <span>Delete table</span>
-            </a>
+          <div class="btn-group right">
+            <% if type == 'Table' %>
+              <a class="btn btn-color delete-table" href="#" data-url="/tables/<%= id %>/delete" data-name="<%= name %>" data-type="ajax-loader"><i class="material-icons">delete</i> <span>Delete table</span>
+              </a>
+            <% else %>
+              <a class="btn btn-color delete-collection" href="#" data-url="/collections/<%= id %>/delete" data-name="<%= name %>" data-type="ajax-loader"><i class="material-icons">delete</i> <span>Delete collection</span>
+              </a>
+            <% end %>
           </div>
         <% end %>
+
+        </h2>
+        <p style="margin-top: 10px">
+          <%= description %>
+        </p>
+        <p style="margin-top: 30px">
+          <% if edit_access %>
+            <% if type == 'Table' %>
+              <% if collections.empty? %>
+                  This table doesn't belong to any collection. You can add this table to existing collections in the Settings.
+              <% else %>
+                This table belongs to <%= pluralize(collections.count, "collection") %>.
+              <% end %>
+            <% end %>
+          <% end %>
+        </p>
+
+        <p>
+          <% if edit_access %>
+            <% if type == 'Table' %>
+              <% unless collections.empty? %>
+                <% collections.each do |collection| %>
+                  <a href="/collections/<%= collection.id %>" class="btn btn-color"><i class="material-icons">folder</i> <span><%= collection.name %></span></a>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </p>
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs tab-nav-right" role="tablist">
@@ -24,7 +52,7 @@
                 <a><i class="material-icons"><%= tab[:icon] %></i> <%= tab[:text] %></a>
               </li>
             <% else %>
-              <li role="presentation" data-intro="Find the dataset's <%= tab[:text].downcase %> here.">
+              <li role="presentation">
                 <a href="<%= tab[:link] %>"><i class="material-icons"><%= tab[:icon] %></i> <%= tab[:text] %></a>
               </li>
             <% end %>

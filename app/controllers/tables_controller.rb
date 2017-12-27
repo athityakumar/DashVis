@@ -24,6 +24,11 @@ class TablesController < ApplicationController
       @table = Table.new(name: params[:name], description: params[:description])
       if @table.save
         @current_user.tables << [@table]
+
+        if params[:collections]
+          @table.collections = params[:collections].map { |collection_id| Collection.find_by_id(collection_id) }
+        end
+
         flash[:message] = 'Successfully created new table.'
         redirect_to show_table_url(table_id: @table.id) and return
       else

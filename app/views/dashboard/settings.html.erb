@@ -13,13 +13,13 @@
 
   <%= render 'shared_partials/tab_panel.html.erb',
     name: 'Dashboard',
-    description: 'The master table that contains data about all your other tables.',
+    description: 'Your general preferences to save.',
     edit_access: false,
     post_url: 1,
     active_tab: 'SETTINGS',
     tabs: [
-      {text: 'TABLE', icon: 'grid_on', link: '/tables'},
-      {text: 'CHARTS', icon: 'pie_chart_outlined', link: '/charts'},
+      {text: 'TABLES', icon: 'grid_on', link: '/tables'},
+      {text: 'COLLECTIONS', icon: 'folder', link: '/collections'},
       {text: 'SETTINGS', icon: 'settings', link: '/settings'}
     ] %>
 
@@ -29,7 +29,7 @@
             <!-- Body Copy -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card" data-step="1" data-intro="This is your settings form.">
+                    <div class="card">
                         <div class="header">
                             <%= render 'shared_partials/alert.html.erb', alert: flash %>
                             <h2>
@@ -44,7 +44,7 @@
                             <button type="button" class="btn btn-default waves-effect" data-toggle="modal" data-target="#smallModal">MODAL - SMALL SIZE</button>
  -->
 
-          <form id="settings" method="POST" action="/dashboard/settings">
+          <form id="settings" method="POST" action="/settings">
               <%= render 'shared_partials/alert.html.erb',
                 alert: {
                   message: "Did you know? The data below has been gathered from the social media account(s) that you've linked with this account.",

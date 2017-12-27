@@ -15,6 +15,9 @@
     name: @table.name,
     description: @table.description,
     edit_access: true,
+    type: 'Table',
+    id: @table.id,
+    collections: @table.collections,
     active_tab: 'SETTINGS',
     tabs: [
       {text: 'TABLE', icon: 'grid_on', link: "/tables/#{@table.id}"},

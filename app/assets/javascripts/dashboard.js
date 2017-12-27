@@ -7,6 +7,7 @@
 
 //= require_directory ./common
 
+//= require dashboard/sidenav
 //= require dashboard/sweetalert.min
 //= require_directory ./dashboard
 

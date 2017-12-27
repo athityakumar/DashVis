@@ -25,3 +25,12 @@
 # @column_3.data << [@data_3, @data_6]
 # @table_2.rows << [@row_1, @row_2]
 # @table_2.columns << [@column_1, @column_2, @column_3]
+
+# @collection_1 = Collection.create(name: 'Finance', description: 'Financial shiz')
+# @collection_2 = Collection.create(name: 'Book', description: 'Geeky shiz')
+
+# @user = User.last
+
+# @user.collections     << [@collection_1, @collection_2]
+# @user.tables          << [@table_2]
+# @table_2.collections  << [@collection_1, @collection_2]

@@ -4,6 +4,7 @@ class CreateCollections < ActiveRecord::Migration[5.1]
       t.string :name
       t.text   :description
 
+      t.references :user
       t.timestamps
     end
   end

@@ -19,14 +19,16 @@
           <% end %>
 
             <% if edit_access %>
-              <div class="btn-group">
-                <a class="btn btn-color dropdown-toggle" href="/tables/<%= @table.id %>/new/column" ><i class="material-icons">add</i> <span>New column</span>
-                </a>
-              </div>
+              <div class="right">
+                <div class="btn-group">
+                  <a class="btn btn-color dropdown-toggle" href="/tables/<%= @table.id %>/new/column" ><i class="material-icons">add</i> <span>New column</span>
+                  </a>
+                </div>
 
-              <div class="btn-group">
-                <a class="btn btn-color dropdown-toggle" href="/tables/<%= @table.id %>/new/row" ><i class="material-icons">add</i> <span>New row</span>
-                </a>
+                <div class="btn-group">
+                  <a class="btn btn-color dropdown-toggle" href="/tables/<%= @table.id %>/new/row" ><i class="material-icons">add</i> <span>New row</span>
+                  </a>
+                </div>
               </div>
             <% end %>
 
@@ -112,6 +114,29 @@
     });
 
     var eventFiredBtnDeleteSweetAlert = function(jE) {
+        $('.delete-collection').on('click', function(e) {
+          e.preventDefault();
+          var btnDelete = $(this);
+          var collection_name = btnDelete.data('name');
+          var post_url  = btnDelete.data('url');
+
+          swal({
+            title: "Are you sure?",
+            text: "Once deleted, '"+collection_name+"' collection can't be recovered back.",
+            type: "warning",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete.",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+          }, function () {
+            swal("Deleted!", "Your collection has been deleted.", "success");
+            setTimeout(function () {
+                window.location.href = post_url;
+            }, 500);
+          });
+        });
+
         $(jE).on('click', '.delete-table', function(e) {
           e.preventDefault();
           var btnDelete = $(this);

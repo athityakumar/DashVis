@@ -12,11 +12,11 @@
   </section>
 
   <%= render 'shared_partials/tab_panel.html.erb',
-    name: 'Dashboard',
-    description: 'A list of all your existing tables.',
+    name: "Dashboard",
+    description: "A list of all your existing collections.",
     edit_access: false,
     post_url: 1,
-    active_tab: 'TABLES',
+    active_tab: 'COLLECTIONS',
     tabs: [
       {text: 'TABLES', icon: 'grid_on', link: '/tables'},
       {text: 'COLLECTIONS', icon: 'folder', link: '/collections'},
@@ -30,11 +30,10 @@
     <% end %>
 
     <%= render 'shared_partials/datatable.html.erb',
-      name: "Dashboard", post_url: '/tables_server_side',
-      description: "A data representation of all your existing tables",
-      filepath: '/tables', vectors_with_index: nil,
+      post_url: '/collections_server_side',
+      filepath: '/collections', vectors_with_index: nil,
       edit_access: false,
       vectors: ['Action'] + @vectors, access: {read: true, write: false},
-      download_filename: "Visitors_#{Time.now.strftime('%b_%d_%Y_%H_%m_%S')}" %>
+      download_filename: "Collections_#{Time.now.strftime('%b_%d_%Y_%H_%m_%S')}" %>
   </section>
 </body>
