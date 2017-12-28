@@ -12,10 +12,13 @@ class Table < ApplicationRecord
   validates_presence_of :description
 
   def to_dataframe
-    Daru::DataFrame.rows(
+    df = Daru::DataFrame.rows(
       rows.map    { |row| row.data.map(&:value) },
       order: columns.map { |col| col.name.gsub(' ', '_') },
       index: rows.map { |row| row.id }
     )
+
+    df['SNo'] = (1..df.nrows).to_a
+    df
   end
 end

@@ -93,20 +93,21 @@
       columns: [
         <% vectors.each_with_index do |vector, i| %>
           <% if i == vectors.count - 1 %>
-            <% if ['Action', 'SNo'].include?(vector) %>
+            <% if ['Action'].include?(vector) %>
             { data: "<%= vector %>", orderable: false }
             <% else %>
             { data: "<%= vector %>" }
             <% end %>
           <% else %>
-            <% if ['Action', 'SNo'].include?(vector) %>
+            <% if ['Action'].include?(vector) %>
             { data: "<%= vector %>", orderable: false },
             <% else %>
             { data: "<%= vector %>" },
             <% end %>
           <% end %>
         <% end %>
-      ]
+      ],
+      searchHighlight: true
     });
 
     table.on('draw.dt', function () {
@@ -198,7 +199,7 @@
               closeOnConfirm: false,
               showLoaderOnConfirm: true,
           }, function () {
-              swal("Deleted!", "Your table has been deleted.", "success");
+              swal("Deleted!", "Your column has been deleted.", "success");
               setTimeout(function () {
                   window.location.href = post_url;
               }, 500);

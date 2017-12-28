@@ -63,6 +63,22 @@
                   </div>
 
 
+                        <div class="body">
+                            <h2 class="card-inside-title">Add Collections to this Table</h2>
+              <div class="input-group">
+                  <div class="form-line">
+                    <% if @current_user.collections.empty? %>
+                      <select class="form-control show-tick" multiple="multiple" data-live-search="true" data-selected-text-format="count > 3" title="Choose collections" data-actions-box="true" data-live-search-placeholder="Search a collection" data-multiple-separator=" " name="collections[]" disabled></select>
+                    <% else %>
+                      <select class="form-control show-tick" multiple="multiple" data-live-search="true" data-selected-text-format="count > 3" title="Choose collections" data-actions-box="true" data-live-search-placeholder="Search a collection" data-multiple-separator=" " name="collections[]">
+
+                      <% @current_user.collections.each do |collection| %>
+                        <option data-content="<span class='label btn-color'><%= collection.name %></span>"><%= collection.id %></option>
+                      <% end %>
+                    <% end %>
+                  </select>
+                  </div>
+
 
 
 <!--                         <div class="body">
@@ -90,8 +106,8 @@
 
 
                 </div>
-
-
+              </div>
+</div>
 
               <div class="row" style="margin-top: 100px">
                   <div class="col-xs-6 col-md-2 col-md-offset-4">
@@ -103,7 +119,6 @@
                   </div>
 </div>
           </form>
-
 
 
 

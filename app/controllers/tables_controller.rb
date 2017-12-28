@@ -152,7 +152,6 @@ class TablesController < ApplicationController
     html_df['Action'] = paginated_df.index.map do |i|
       "<a class='text-color delete-row' href='#' data-url='/tables/#{@table.id}/delete/row/#{i}' data-type='ajax-loader'><i class='material-icons'>delete</i></a><a href='/tables/#{@table.id}/edit/row/#{i}/' class='text-color'><i class='material-icons'>edit</i></a>"
     end
-    html_df['SNo'] = (1..paginated_df.index.count).map { |i| i }
     paginated_df = html_df
 
     respond_to do |format|

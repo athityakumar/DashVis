@@ -2,6 +2,7 @@
   <div class="container-fluid">
     <div class="card">
       <div class="header">
+
         <h2>
           <%= name %>
         <% if edit_access %>
@@ -28,6 +29,12 @@
               <% else %>
                 This table belongs to <%= pluralize(collections.count, "collection") %>.
               <% end %>
+            <% elsif type == 'Collection' %>
+              <% if tables.empty? %>
+                  This collection doesn't seem to any table. You can add existing tables to this collections in the Settings.
+              <% else %>
+                This collection contains <%= pluralize(tables.count, "table") %>.
+              <% end %>
             <% end %>
           <% end %>
         </p>
@@ -53,7 +60,7 @@
               </li>
             <% else %>
               <li role="presentation">
-                <a href="<%= tab[:link] %>"><i class="material-icons"><%= tab[:icon] %></i> <%= tab[:text] %></a>
+                <a data-intro="<%= tab[:text] %>" href="<%= tab[:link] %>"><i class="material-icons"><%= tab[:icon] %></i> <%= tab[:text] %></a>
               </li>
             <% end %>
           <% end %>

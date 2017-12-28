@@ -24,9 +24,26 @@ class DashboardController < ApplicationController
   end
 
   def charts
-    @category_columns  = ['Classification-A', 'Classification-B']
+    @df = Daru::DataFrame.new(
+      current_user.tables.all.map.with_index do |record, i|
+        {
+          'SNo'         => i+1,
+          'Name'        => "<a href='/tables/#{record.id}'>#{record.name}</a>",
+          'Description' => record.description.to_s,
+          'Rows'        => record.rows.count.to_s,
+          'Columns'     => record.columns.count.to_s,
+          'Collections' => record.collections.count.to_s
+          # 'Charts'      => record.charts.count
+        }
+      end,
+      index: current_user.tables.all.map(&:id)
+    )
+    @vectors = @df.vectors.to_a
+
+    @category_columns  = ['Rows','Columns','Collections']
+    @data = @df.to_json(orient: :values)
     @category_datasets = @category_columns.map do |category_column|
-      frequency_hash(@data, @vectors, category_column)
+      frequency_hash(@data.transpose, @vectors, category_column)
     end
   end
 

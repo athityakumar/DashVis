@@ -13,3 +13,7 @@
 .alert .close{
   color: #fff;
 }
+
+table.dataTable span.highlight {
+  background-color: #f1dd38;
+}

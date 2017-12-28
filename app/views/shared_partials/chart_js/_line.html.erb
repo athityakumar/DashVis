@@ -41,7 +41,23 @@
       },
       options: {
         responsive: true,
-        legend: false
+        legend: false,
+        scales: {
+          xAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Values of Occurance'
+            }
+          }],
+          yAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Occurance count'
+            }
+          }]
+        }
       }
     });
   });

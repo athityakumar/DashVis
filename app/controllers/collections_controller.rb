@@ -103,7 +103,6 @@ class CollectionsController < ApplicationController
       table_name = row['Name'].gsub(/<\/?[^>]*>/, "")
       "<a class='text-color delete-table' href='#' data-url='/tables/#{i}/delete' data-type='ajax-loader' data-name=\"#{table_name}\"><i class='material-icons'>delete</i></a><a href='/tables/#{i}/edit/' class='text-color'><i class='material-icons'>edit</i></a>"
     end
-    html_df['SNo'] = (1..paginated_df.index.count).map { |i| i }
     paginated_df = html_df
 
     respond_to do |format|

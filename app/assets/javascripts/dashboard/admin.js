@@ -164,6 +164,7 @@ $.AdminBSB.rightSideBar = {
         var _this = this;
         var $sidebar = $('#rightsidebar');
         var $overlay = $('.overlay');
+        var $body    = $('body');
 
         //Close sidebar
         $(window).click(function (e) {
@@ -182,7 +183,7 @@ $.AdminBSB.rightSideBar = {
         });
     },
     isOpen: function () {
-        return $('.right-sidebar').hasClass('open');
+        return $('#rightsidebar').hasClass('open');
     }
 }
 //==========================================================================================================================
@@ -457,4 +458,5 @@ $(function () {
     $('select').selectpicker();
 
     setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
+    introJs().start();
 });

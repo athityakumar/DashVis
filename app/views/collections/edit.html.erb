@@ -16,6 +16,7 @@
     description: @collection.description,
     edit_access: true,
     type: 'Collection',
+    tables: @collection.tables,
     id: @collection.id,
     active_tab: 'SETTINGS',
     tabs: [
@@ -68,7 +69,7 @@
               <div class="input-group">
                   <div class="form-line">
                     <% if @current_user.tables.empty? %>
-                      <select class="form-control show-tick" multiple="multiple" data-live-search="true" data-selected-text-format="count > 3" title="Choose tables" data-actions-box="true" data-live-search-placeholder="Search a table" data-multiple-separator=" " name="tables[]" disabled>
+                      <select class="form-control show-tick" multiple="multiple" data-live-search="true" data-selected-text-format="count > 3" title="Choose tables" data-actions-box="true" data-live-search-placeholder="Search a table" data-multiple-separator=" " name="tables[]" disabled></select>
                     <% else %>
                       <select class="form-control show-tick" multiple="multiple" data-live-search="true" data-selected-text-format="count > 3" title="Choose tables" data-actions-box="true" data-live-search-placeholder="Search a table" data-multiple-separator=", " name="tables[]">
 
