@@ -56,6 +56,10 @@
   .theme-<%= color %> .text-color {
     color: <%= code %>;
   }
+
+  .theme-<%= color %> .badge-color {
+    background-color: <%= code %>;
+  }
 <% end %>
 
 .btn-color, .btn-color a {
@@ -65,4 +69,10 @@
 .btn-color:hover {
   color: #fff !important;
 }
+
+.badge-color {
+  color: #fff !important;
+  border-radius: 50%;
+}
+
 </style>

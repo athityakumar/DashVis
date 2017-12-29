@@ -33,7 +33,7 @@
       post_url: "/tables/datatable_server_side/#{@table.id}",
       filepath: "/tables/#{@table.id}",
       edit_access: true,
-      vectors: (['Action', 'SNo'] + @df.vectors.to_a).uniq, access: {read: true, write: false},
+      vectors: ['Action','SNo'] + (@df.vectors.to_a-['Action','SNo']), access: {read: true, write: false},
       vectors_with_index: @table.columns.map { |col| [col.name, col.id] },
       download_filename: "#{@table.name}_#{Time.now.strftime('%b_%d_%Y_%H_%m_%S')}" %>
   </section>
