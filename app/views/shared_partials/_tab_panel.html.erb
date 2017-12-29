@@ -17,21 +17,36 @@
           </div>
         <% end %>
 
+        <% if edit_access %>
+          <ol class="breadcrumb breadcrumb-color" style="margin-left: -15px;">
+            <li><a href="/charts"><i class="material-icons">home</i> Home</a></li>           
+            <% if type == 'Table' %>
+              <li><a href="/tables"><i class="material-icons">grid_on</i> Tables</a></li>
+            <% else %>
+              <li><a href="/collections"><i class="material-icons">folder</i> Collections</a></li>
+            <% end %>
+            <li class="active"> <%= name %></li>
+          </ol>
+        <% end %>
+
+
         </h2>
+        <p style="margin-top: 30px">
+          <strong>Description</strong>
+        </p>
         <p style="margin-top: 10px">
           <%= description %>
-        </p>
-        <p style="margin-top: 30px">
+          <br>
           <% if edit_access %>
             <% if type == 'Table' %>
               <% if collections.empty? %>
-                  This table doesn't belong to any collection. You can add this table to existing collections in the Settings.
+                  This table doesn't belong to any collection. You can add this table to existing collections in the <a href="/tables/<%= id %>/edit">settings</a>.
               <% else %>
                 This table belongs to <%= pluralize(collections.count, "collection") %>.
               <% end %>
             <% elsif type == 'Collection' %>
               <% if tables.empty? %>
-                  This collection doesn't seem to any table. You can add existing tables to this collections in the Settings.
+                  This collection doesn't seem to any table. You can add existing tables to this collections in the <a href="/collections/<%= id %>/edit">settings</a>.
               <% else %>
                 This collection contains <%= pluralize(tables.count, "table") %>.
               <% end %>

@@ -19,18 +19,19 @@
     active_tab: 'CHARTS',
     tabs: [
       {text: 'TABLE', icon: 'grid_on', link: '/tables'},
-      {text: 'CHARTS', icon: 'pie_chart_outlined', link: '/charts'},
+      {text: 'COLLECTIONS', icon: 'folder', link: '/collections'},
       {text: 'SETTINGS', icon: 'settings', link: '/settings'}
     ] %>
 
   <section class="content" style="margin-top: 0px;">
     <div class="container-fluid">
       <div class="row">
-        <% ['line', 'bar', 'pie', 'doughnut'].each_with_index do |chart_type, i| %>
+        <% @category_datasets_list.each_with_index do |category_dataset, i| %>
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <%= render 'shared_partials/chart.html.erb',
-              chart: {type: chart_type, name: nil, description: nil}, i: i,
-              category_columns: @category_columns, category_datasets: @category_datasets %>
+              chart: {type: 'line', name: nil, description: nil}, i: i,
+              xaxis: @category_columns_list[i].map { |col| col.gsub('_', ' ')}.join(', '), yaxis: 'No. of tables',
+              category_columns: @category_columns_list[i], category_datasets: category_dataset %>
           </div>
         <% end %>
       </div>
