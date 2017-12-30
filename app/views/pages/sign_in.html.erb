@@ -11,11 +11,9 @@
         <h2 style="text-align: center;">Sign in with ...</h2>
       </div>
       <div class="body">
-        <% if flash %>
-          <%= render 'shared_partials/alert.html.erb', alert: flash %>
-        <% end %>
-              <div class="row">
+        <%= render 'shared_partials/alert.html.erb', alert: flash %>
 
+              <div class="row">
                   <div class="col-md-3 col-xs-6">
                       <a class="btn btn-block bg-red waves-effect" href="/auth/google_oauth2"><strong><i class="fa fa-google fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
                   </div>

@@ -25,9 +25,7 @@
 
 
   <section class="content" style="margin-top: 0px;">
-    <% if flash %>
-      <%= render 'shared_partials/alert.html.erb', alert: flash %>
-    <% end %>
+    <%= render 'shared_partials/alert.html.erb', alert: flash %>
 
     <%= render 'shared_partials/datatable.html.erb',
       name: '', description: '',

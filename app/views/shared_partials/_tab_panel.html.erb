@@ -70,11 +70,11 @@
           <% tabs.each_with_index do |tab, i| %>
             <% if tab[:text] == active_tab %>
               <li role="presentation" class="active">
-                <a><i class="material-icons"><%= tab[:icon] %></i> <%= tab[:text] %></a>
+                <a><i class="material-icons"><%= tab[:icon] %></i> <span class="hidden-xs hidden-sm"><%= tab[:text] %></span></a>
               </li>
             <% else %>
               <li role="presentation">
-                <a href="<%= tab[:link] %>"><i class="material-icons"><%= tab[:icon] %></i> <%= tab[:text] %></a>
+                <a href="<%= tab[:link] %>"><i class="material-icons"><%= tab[:icon] %></i> <span class="hidden-xs hidden-sm"><%= tab[:text] %></span></a>
               </li>
             <% end %>
           <% end %>

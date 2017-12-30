@@ -25,13 +25,11 @@
 
 
   <section class="content" style="margin-top: 0px;">
-    <% if flash %>
-      <%= render 'shared_partials/alert.html.erb', alert: flash %>
-    <% end %>
+    <%= render 'shared_partials/alert.html.erb', alert: flash %>
 
     <%= render 'shared_partials/datatable.html.erb',
-      name: "Dashboard", post_url: '/tables_server_side',
-      description: "A data representation of all your existing tables",
+      name: "", post_url: '/tables_server_side',
+      description: "",
       filepath: '/tables', vectors_with_index: nil,
       edit_access: false,
       vectors: ['Action'] + @vectors, access: {read: true, write: false},
