@@ -36,6 +36,7 @@ gem 'jquery-rails'
 
 gem 'yui-compressor'
 gem 'htmlcompressor'
+gem 'webpacker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
