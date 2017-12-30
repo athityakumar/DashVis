@@ -1,9 +1,19 @@
 //= require jquery
 //= require jquery_ujs
 
-//= require common/jquery
-//= require common/bootstrap
-//= require common/bootstrap-select
-//= require common/jquery.dataTables
-//= require common/dataTables.bootstrap
-//= require common/dataTables.buttons.min
+//= require bootstrap
+//= require bootstrap-select
+//= require jquery.dataTables
+//= require jquery.slimscroll
+//= require jquery.multi-select
+//= require dataTables.bootstrap
+//= require dataTables.buttons.min
+//= require waves
+
+//= require dashboard/sidenav
+//= require sweetalert.min
+
+//= require dashboard/admin
+//= require dashboard/demo
+//= require dashboard/dialogs
+//= require dashboard/multi-select

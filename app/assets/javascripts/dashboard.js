@@ -1,16 +1,24 @@
-//= require common/jquery
-//= require common/bootstrap
-//= require common/bootstrap-select
-//= require common/jquery.dataTables
-//= require common/dataTables.bootstrap
-//= require common/dataTables.buttons.min
+//= require pages
 
-//= require_directory ./common
+//= require bootstrap-notify
+//= require bootstrap-select
+
+//= require jquery.dataTables
+//= require jquery.slimscroll
+//= require jquery.multi-select
+
+//= require dataTables.bootstrap
+//= require dataTables.colReorder.min
+
+//= require highlight
+//= require dataTables.searchHighlight
+
+//= require waves
 
 //= require dashboard/sidenav
-//= require dashboard/sweetalert.min
-//= require_directory ./dashboard
+//= require sweetalert.min
 
-$(document).ready(function(){
-  introJs().start();
-})
+//= require dashboard/admin
+//= require dashboard/demo
+//= require dashboard/dialogs
+//= require dashboard/multi-select

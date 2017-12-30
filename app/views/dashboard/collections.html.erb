@@ -30,6 +30,7 @@
     <% end %>
 
     <%= render 'shared_partials/datatable.html.erb',
+      name: '', description: '',
       post_url: '/collections_server_side',
       filepath: '/collections', vectors_with_index: nil,
       edit_access: false,

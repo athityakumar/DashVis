@@ -10,9 +10,9 @@ class DashboardController < ApplicationController
           'SNo'         => i+1,
           'Name'        => "<a href='/tables/#{record.id}'>#{record.name}</a>",
           'Description' => record.description.to_s,
-          'No._of_Rows'        => record.rows.count,
-          'No._of_Columns'     => record.columns.count,
-          'No._of_Collections' => record.collections.count
+          'No_of_Rows'        => record.rows.count,
+          'No_of_Columns'     => record.columns.count,
+          'No_of_Collections' => record.collections.count
           # 'Charts'      => record.charts.count
         }
       end,
@@ -30,9 +30,9 @@ class DashboardController < ApplicationController
           'SNo'         => i+1,
           'Name'        => "<a href='/tables/#{record.id}'>#{record.name}</a>",
           'Description' => record.description.to_s,
-          'No._of_Rows'        => record.rows.count.to_s,
-          'No._of_Columns'     => record.columns.count.to_s,
-          'No._of_Collections' => record.collections.count.to_s
+          'No_of_Rows'        => record.rows.count.to_s,
+          'No_of_Columns'     => record.columns.count.to_s,
+          'No_of_Collections' => record.collections.count.to_s
           # 'Charts'      => record.charts.count
         }
       end,
@@ -40,7 +40,7 @@ class DashboardController < ApplicationController
     )
     @vectors = @df.vectors.to_a
 
-    @category_columns_list = [['No._of_Rows'], ['No._of_Columns'],['No._of_Collections']]
+    @category_columns_list = [['No_of_Rows'], ['No_of_Columns'],['No_of_Collections']]
     @data = @df.to_json(orient: :values)
     @category_datasets_list = @category_columns_list.map do |category_columns|
       category_columns.map do |category_column|
@@ -56,7 +56,7 @@ class DashboardController < ApplicationController
           'SNo'         => i+1,
           'Name'        => "<a href='/collections/#{record.id}'>#{record.name}</a>",
           'Description' => record.description.to_s,
-          'No._of_Tables'      => record.tables.count
+          'No_of_Tables'      => record.tables.count
           # 'Charts'      => record.charts.count
         }
       end,
@@ -89,9 +89,9 @@ class DashboardController < ApplicationController
           'SNo'         => i+1,
           'Name'        => "<a href='/tables/#{record.id}'>#{record.name}</a>",
           'Description' => record.description.to_s,
-          'No._of_Rows'        => record.rows.count,
-          'No._of_Columns'     => record.columns.count,
-          'No._of_Collections' => record.collections.count
+          'No_of_Rows'        => record.rows.count,
+          'No_of_Columns'     => record.columns.count,
+          'No_of_Collections' => record.collections.count
           # 'Charts'      => record.charts.count
         }
       end,
@@ -140,7 +140,7 @@ class DashboardController < ApplicationController
           'SNo'         => i+1,
           'Name'        => "<a href='/collections/#{record.id}'>#{record.name}</a>",
           'Description' => record.description.to_s,
-          'No._of_Tables'      => record.tables.count
+          'No_of_Tables'      => record.tables.count
           # 'Charts'      => record.charts.count
         }
       end,

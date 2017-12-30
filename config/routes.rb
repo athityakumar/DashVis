@@ -1,18 +1,16 @@
  Rails.application.routes.draw do
-  # resources :tables
-  # resources :accounts
-  # resources :tables
-  # resources :users
-
   root to: 'pages#sign_in'
 
   # Scaffold pages
   get  '/auth/:provider/callback' => 'sessions#create'
+  get  '/auth/failure'            => 'pages#sign_in'
   get  '/logout'                  => 'sessions#destroy'
 
   # Scaffold dashboard
-  get  '/tables'                => 'dashboard#tables'
+  get  '/tables'                => 'dashboard#tables', format: :json
   get  '/tables_server_side'    => 'dashboard#tables_server_side', format: :json
+
+  # get  '/charts'                => 'dashboard#charts' # TO-DO
 
   get  '/collections'             => 'dashboard#collections', format: :json
   get  '/collections_server_side' => 'dashboard#collections_server_side', format: :json
@@ -46,27 +44,25 @@
   post '/tables/:table_id/delete/row/:row_id' => 'tables#delete_row'
 
   # Scaffold collections
-
-  get  '/collections/new' => 'collections#new', as: :new_collection
-  post '/collections/new' => 'collections#new'
-
-
-  get  '/collections/:collection_id' => 'collections#show', render: :json, as: :show_collection
-  get  '/collections/:collection_id/datatable_server_side' => 'collections#datatable_server_side', format: :json
-  get  '/collections/:collection_id/edit' => 'collections#edit', as: :edit_collection
-  post '/collections/:collection_id/edit' => 'collections#edit'
+  get  '/collections/new'                   => 'collections#new', as: :new_collection
+  post '/collections/new'                   => 'collections#new'
+  get  '/collections/:collection_id'        => 'collections#show', format: :json, as: :show_collection
+  get  '/collections/:collection_id/edit'   => 'collections#edit', as: :edit_collection
+  post '/collections/:collection_id/edit'   => 'collections#edit'
   get  '/collections/:collection_id/delete' => 'collections#delete'
+
+  get  '/collections/:collection_id/datatable_server_side' => 'collections#datatable_server_side', format: :json
 
   #! Yet to be done
 
-  get  '/charts'                => 'dashboard#charts' # TO-DO
-
   # Scaffold charts
-  get  '/charts/new'              => 'charts#new'
-  get  '/charts/:chart_id'        => 'charts#show'
-  get  '/charts/:chart_id/edit'   => 'charts#edit'
-  get  '/charts/:chart_id/delete' => 'charts#delete'
+  # get  '/tables/:table_id/charts'                  => 'tables#show_charts', as: :show_charts
+  # get  '/tables/:table_id/charts/new'              => 'tables#new_chart'
+  # post '/tables/:table_id/charts/new'              => 'tables#new_chart'
+  # get  '/tables/:table_id/charts/:chart_id/edit'   => 'tables#edit_chart'
+  # post '/tables/:table_id/charts/:chart_id/edit'   => 'tables#edit_chart'
+  # get  '/tables/:table_id/charts/:chart_id/delete' => 'tables#delete_chart'
 
-  #! Notifications per table
+  # Notifications per table
   # get  '/tables/:table_id/activity' => 'table#activity'
 end

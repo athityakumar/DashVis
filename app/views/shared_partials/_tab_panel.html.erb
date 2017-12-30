@@ -19,7 +19,6 @@
 
         <% if edit_access %>
           <ol class="breadcrumb breadcrumb-color" style="margin-left: -15px;">
-            <li><a href="/charts"><i class="material-icons">home</i> Home</a></li>           
             <% if type == 'Table' %>
               <li><a href="/tables"><i class="material-icons">grid_on</i> Tables</a></li>
             <% else %>
@@ -75,7 +74,7 @@
               </li>
             <% else %>
               <li role="presentation">
-                <a data-intro="<%= tab[:text] %>" href="<%= tab[:link] %>"><i class="material-icons"><%= tab[:icon] %></i> <%= tab[:text] %></a>
+                <a href="<%= tab[:link] %>"><i class="material-icons"><%= tab[:icon] %></i> <%= tab[:text] %></a>
               </li>
             <% end %>
           <% end %>
