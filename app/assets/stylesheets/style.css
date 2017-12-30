@@ -2329,7 +2329,7 @@
   .navbar .navbar-header {
     display: inline-block;
     margin-bottom: -6px;
-    width: calc(100% + 30px); }
+    width: 100% !important; }
   .navbar .nav > li {
     display: inline-block; }
   .navbar .navbar-nav {

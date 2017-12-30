@@ -1,2 +1,1 @@
-//= require jquery
-//= require bootstrap
+//= require application

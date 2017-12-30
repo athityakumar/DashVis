@@ -1,4 +1,4 @@
-//= require pages
+//= require application
 
 //= require bootstrap-notify
 //= require bootstrap-select

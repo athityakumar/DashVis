@@ -31,8 +31,10 @@ gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-github'
 
 gem 'dotenv-rails'
-
 gem 'jquery-rails'
+
+gem 'yui-compressor'
+gem 'htmlcompressor'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
