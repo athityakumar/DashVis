@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   def create
     auth = request.env['omniauth.auth']
 
@@ -7,9 +6,10 @@ class SessionsController < ApplicationController
       if Identity.omniauth_exists?(auth)
         @identity = Identity.find_with_omniauth(auth)
         if @identity.user_id != current_user.id
-          flash[:message] = "Sorry, this #{@identity.provider_name} profile has already been linked by another user (#{@identity.user.name}, id: #{@identity.user_id})"
+          current_user.tables      << @identity.user.tables
+          current_user.collections << @identity.user.collections
 
-          redirect_to settings_path and return
+          @identity.user = current_user
         else
           @identity = Identity.update_with_omniauth(auth)
         end
