@@ -39,7 +39,7 @@ That being said, DashVis is still at it's infancy right now. There are lots of p
 [(Back to top)](#table-of-contents)
 
 1. Login with your social media accout (Google, Facebook, LinkedIn or GitHub)
-2. You'll see that there are 2 segregations : `Tables` and `Collections`.
+2. You'll see that there are 2 segregations : `Tables` and `Folders`.
     - `Tables` : These are your individual tables, such as `Books`, `YouTubers`, `Wallet`, `Policies`.
     - `Folders` : These are your folders / table-tags, such as `Entertainment`, `Finance`, `2018`, etc.
     - **NOTE** : A folder can contain multiple tables. Similarly, a table can also belong to multiple folders.
@@ -71,9 +71,9 @@ Flavouring the tabular data with a little bit of HTML tags can add a zing to you
 [(Back to top)](#table-of-contents)
 
 - [x] Tables : Create, Update and Delete functionalities for Rows and Columns.
-- [x] Collections : Create, Update and Delete functionalities.
+- [x] Folders : Create, Update and Delete functionalities.
 - [ ] Custom Table Template : Create, Update and Delete functionalities.
-- [ ] Ability to share Tables / Collections, with Public / specific user, with specific access level (read, write or admin).
+- [ ] Ability to share Tables / Folders, with Public / specific user, with specific access level (read, write or admin).
 - [ ] Charts : Create, Update and Delete functionalities.
 - [ ] Optimize application to reload only specific parts of website with AJAX.
 - [ ] Support scrapers to feed real-time data into a specific Table.
@@ -83,7 +83,6 @@ Flavouring the tabular data with a little bit of HTML tags can add a zing to you
 
 [(Back to top)](#table-of-contents)
 
-The MIT License (MIT) 2018 - [Athitya Kumar](https://github.com/athityakumar/). Please have a look at the [LICENSE.md](LICENSE.md) for more details.
+The MIT License 2018 [Athitya Kumar](https://github.com/athityakumar/). For more details, have a look at the [License](LICENSE.md).
 
-
-**MOST IMPORTANTLY:** If you're planning to use this codebase for any commercial applications, kindly shoot a mail to athityakumar@gmail.com before using the application.
+**MOST IMPORTANT CONDITION:** If you're planning to modify and use this codebase for any commercial applications, kindly shoot a mail to athityakumar@gmail.com and get my approval before using the codebase.
