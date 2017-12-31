@@ -2,7 +2,7 @@
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=shields)](http://makeapullrequest.com)
 
-DashVis is an open-source Dashboard built with Rails for all users in general. DashVis can be used to organize your resources via `Tables` (For exampe, Notepad, Contacts, Playlist, etc.)and `Folders` (For example, Entertainment, Studies, etc.). Feel free to use the [live website](http://dashvis.herokuapp.com).
+DashVis is an open-source Dashboard built with Rails for all users in general. DashVis can be used to organize your resources via `Tables` (For exampe, Notepad, Contacts, Playlist, etc.)and `Folders` (For example, Entertainment, Studies, etc.). Feel free to use the [live website](http://dashvis.herokuapp.com) and take the help of the [User's manual](https://github.com/athityakumar/DashVis/wiki).
 
  ![image](https://raw.githubusercontent.com/athityakumar/DashVis/master/app/assets/images/dv-fb.png?token=AQUQRPr9-DOdAG_taggB3AIFXLzUfEHaks5aUSUswA%3D%3D)
 
