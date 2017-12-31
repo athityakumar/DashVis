@@ -41,7 +41,7 @@
               <% if collections.empty? %>
                   This table doesn't belong to any folder. You can add this table to existing folders in the <a href="/tables/<%= id %>/edit">settings</a>.
               <% else %>
-                This table belongs to <%= pluralize(collections.count, "collection") %>.
+                This table belongs to <%= pluralize(collections.count, "folder") %>.
               <% end %>
             <% elsif type == 'Collection' %>
               <% if tables.empty? %>

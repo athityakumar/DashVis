@@ -30,7 +30,7 @@ $(function () {
 
     swal({
       title: "Are you sure?",
-      text: "Once deleted, '"+collection_name+"' collection can't be recovered back.",
+      text: "Once deleted, '"+collection_name+"' folder can't be recovered back.",
       type: "warning",
       confirmButtonColor: "#DD6B55",
       confirmButtonText: "Yes, delete.",
@@ -38,7 +38,7 @@ $(function () {
       closeOnConfirm: false,
       showLoaderOnConfirm: true,
     }, function () {
-      swal("Deleted!", "Your collection has been deleted.", "success");
+      swal("Deleted!", "Your folder has been deleted.", "success");
       setTimeout(function () {
           window.location.href = post_url;
       }, 500);
