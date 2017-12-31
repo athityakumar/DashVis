@@ -3,6 +3,7 @@
 
   # Scaffold pages
   get  '/auth/:provider/callback' => 'sessions#create'
+  get  '/auth/:provider/unlink'   => 'sessions#unlink'
   get  '/auth/failure'            => 'pages#sign_in'
   get  '/logout'                  => 'sessions#destroy'
 

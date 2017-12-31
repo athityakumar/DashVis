@@ -59,8 +59,6 @@ class User < ApplicationRecord
     table.user_tables.find_by_user_id(self.id).admin_access
   end
 
-  private
-
   def provider_exists?(provider)
     identities.map(&:provider).uniq.include?(provider)
   end

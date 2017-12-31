@@ -42,4 +42,24 @@ class SessionsController < ApplicationController
     flash[:message] = "Successfully logged out."
     redirect_to root_path
   end
+
+  def unlink
+    authenticate_user
+
+    @identities = current_user.identities
+    identity    = @identities.find_by_provider(params[:provider])
+
+    if identity.nil?
+      flash[:message] = "No such social media account linked before."
+    else
+      if @identities.count == 1
+        flash[:message] = "Sorry, this is the only social media account linked to this profile."
+      else
+        flash[:message] = "Successfully unlinked your #{identity.provider_name} account."
+        identity.delete
+      end
+    end
+
+    redirect_to settings_path
+  end
 end

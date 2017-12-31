@@ -103,26 +103,22 @@
 </div>
               <div class="row" style="margin-top: 30px;">
 
+                <% [
+                  ['google_oauth2', 'google', 'red'],
+                  ['facebook', 'facebook', 'indigo'],
+                  ['linkedin', 'linkedin', 'blue'],
+                  ['github', 'github', 'black']
+                ].each do |provider, icon, color| %>
                   <div class="col-md-3 col-xs-6">
-                      <p style="text-align: center;"><b>(<%= @current_user.provider_linked_message('google_oauth2') %>)</b> </p>
-
-                      <a class="btn btn-block bg-red waves-effect" href="/auth/google_oauth2"><strong><i class="fa fa-google fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
-                  </div>
-                  <div class="col-md-3 col-xs-6">
-                      <p style="text-align: center;"><b>(<%= @current_user.provider_linked_message('facebook') %>)</b> </p>
-
-                      <a class="btn btn-block bg-indigo waves-effect" href="/auth/facebook"><strong><i class="fa fa-facebook fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
-                  </div>
-                  <div class="col-md-3 col-xs-6">
-                      <p style="text-align: center;"><b>(<%= @current_user.provider_linked_message('linkedin') %>)</b> </p>
-
-                      <a class="btn btn-block bg-blue waves-effect" href="/auth/linkedin"><strong><i class="fa fa-linkedin fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
-                  </div>
-                  <div class="col-md-3 col-xs-6">
-                      <p style="text-align: center;"><b>(<%= @current_user.provider_linked_message('github') %>)</b> </p>
-
-                      <a class="btn btn-block bg-black waves-effect" href="/auth/github"><strong><i class="fa fa-github fa-lg" aria-hidden="true" style="padding: 10px;"></i></strong></a>
-                  </div>
+                    <% if @current_user.provider_exists?(provider.to_s) %>
+                      <a class="btn btn-block bg-<%= color %> waves-effect" href="/auth/<%= provider %>/unlink" style="padding: 10px;"><span>Unlink </span>
+                    <% else %>
+                    <a class="btn btn-block bg-<%= color %> waves-effect" href="/auth/<%= provider %>" style="padding: 10px;"><span>Link </span>
+                    <% end %>
+                    &nbsp;
+                    <strong><i class="fa fa-<%= icon %>" aria-hidden="true" style="top: -0px;"></i></strong></a>
+                  </div>                
+                <% end %>
               </div>
           </form>
 
