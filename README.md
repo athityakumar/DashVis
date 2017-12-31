@@ -2,8 +2,7 @@
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=shields)](http://makeapullrequest.com)
 
-DashVis is an open-source Dashboard built with Rails for all users in general. DashVis can be used to organize your resources via `Tables` and `Collections`. Feel free to use the [live website](http://dashvis.herokuapp.com).
-
+DashVis is an open-source Dashboard built with Rails for all users in general. DashVis can be used to organize your resources via `Tables` (For exampe, Notepad, Contacts, Playlist, etc.)and `Folders` (For example, Entertainment, Studies, etc.). Feel free to use the [live website](http://dashvis.herokuapp.com).
 
  ![image](https://raw.githubusercontent.com/athityakumar/DashVis/master/app/assets/images/dv-fb.png?token=AQUQRPr9-DOdAG_taggB3AIFXLzUfEHaks5aUSUswA%3D%3D)
 
@@ -42,10 +41,10 @@ That being said, DashVis is still at it's infancy right now. There are lots of p
 1. Login with your social media accout (Google, Facebook, LinkedIn or GitHub)
 2. You'll see that there are 2 segregations : `Tables` and `Collections`.
     - `Tables` : These are your individual tables, such as `Books`, `YouTubers`, `Wallet`, `Policies`.
-    - `Collections` : These are your tags, such as `Entertainment`, `Finance`, `2018`, etc.
-    - **NOTE** : A collection can contain multiple tables. Similarly, a table can also belong to multiple collections.
-3. Create new `Tables`, new `Collections` and add your specific tables to each collection (as you prefer).
-4. Search for your `Tables` and `Collections` in the dashboard.
+    - `Folders` : These are your folders / table-tags, such as `Entertainment`, `Finance`, `2018`, etc.
+    - **NOTE** : A folder can contain multiple tables. Similarly, a table can also belong to multiple folders.
+3. Create new `Tables`, new `Folders` and add your specific tables to each collection (as you prefer).
+4. Search for your `Tables` and `Folders` in the dashboard.
 5. Find DashVis useful? Share it with your friends.
 
 # Pro ways to use DashVis
@@ -63,7 +62,7 @@ Flavouring the tabular data with a little bit of HTML tags can add a zing to you
 
 - `Dash` is short for Dashboard.
 - `Vis` is short for Visualization. 
-    - Currently, only tabular visualization is supported. However, support for charts visualization is coming soon.
+    - Currently, only tabular visualization is supported. However, support for different types of charts is coming soon.
 
 - `DashVis` remotely spells and sounds like Jarvis. :trollface:
 

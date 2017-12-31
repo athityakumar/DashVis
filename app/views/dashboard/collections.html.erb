@@ -13,13 +13,13 @@
 
   <%= render 'shared_partials/tab_panel.html.erb',
     name: "Dashboard",
-    description: "A list of all your existing collections. The name has been inspired from 'Kindle Collections'. Each collection may contain multiple tables, and each table may belong to multiple collections.",
+    description: "A list of all your existing folders. Each folder may contain multiple tables, and each table may belong to multiple folders.",
     edit_access: false,
     post_url: 1,
-    active_tab: 'COLLECTIONS',
+    active_tab: 'FOLDERS',
     tabs: [
       {text: 'TABLES', icon: 'grid_on', link: '/tables'},
-      {text: 'COLLECTIONS', icon: 'folder', link: '/collections'},
+      {text: 'FOLDERS', icon: 'folder', link: '/collections'},
       {text: 'SETTINGS', icon: 'settings', link: '/settings'}
     ] %>
 
@@ -31,6 +31,6 @@
       filepath: '/collections', vectors_with_index: nil,
       edit_access: false,
       vectors: ['Action'] + @vectors, access: {read: true, write: false},
-      download_filename: "Collections_#{Time.now.strftime('%b_%d_%Y_%H_%m_%S')}" %>
+      download_filename: "Folders_#{Time.now.strftime('%b_%d_%Y_%H_%m_%S')}" %>
   </section>
 </body>

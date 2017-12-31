@@ -34,7 +34,7 @@
           <form id="settings" method="POST" action="/collections/new">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="body">
-                            <h2 class="card-inside-title">Collection Name</h2>
+                            <h2 class="card-inside-title">Folder Name</h2>
               <div class="input-group">
                   <div class="form-line">
                       <input type="text" class="form-control" name="name" placeholder="YouTubers" value="<%= params[:name] %>" required autofocus>
@@ -43,7 +43,7 @@
             </div>
             <div class="body">
 
-              <h2 class="card-inside-title">Collection Description</h2>
+              <h2 class="card-inside-title">Folder Description</h2>
               <div class="input-group">
 
 
@@ -59,7 +59,7 @@
 
 
                         <div class="body">
-                            <h2 class="card-inside-title">Add Tables to this Collection</h2>
+                            <h2 class="card-inside-title">Add Tables to this Folder</h2>
               <div class="input-group">
                   <div class="form-line">
                     <% if @current_user.tables.empty? %>

@@ -11,7 +11,7 @@
               <a class="btn btn-color delete-table" href="#" data-url="/tables/<%= id %>/delete" data-name="<%= name %>" data-type="ajax-loader"><i class="material-icons">delete</i> <span>Delete table</span>
               </a>
             <% else %>
-              <a class="btn btn-color delete-collection" href="#" data-url="/collections/<%= id %>/delete" data-name="<%= name %>" data-type="ajax-loader"><i class="material-icons">delete</i> <span>Delete collection</span>
+              <a class="btn btn-color delete-collection" href="#" data-url="/collections/<%= id %>/delete" data-name="<%= name %>" data-type="ajax-loader"><i class="material-icons">delete</i> <span>Delete folder</span>
               </a>
             <% end %>
           </div>
@@ -22,7 +22,7 @@
             <% if type == 'Table' %>
               <li><a href="/tables"><i class="material-icons">grid_on</i> Tables</a></li>
             <% else %>
-              <li><a href="/collections"><i class="material-icons">folder</i> Collections</a></li>
+              <li><a href="/collections"><i class="material-icons">folder</i> Folders</a></li>
             <% end %>
             <li class="active"> <%= name %></li>
           </ol>
@@ -39,15 +39,15 @@
           <% if edit_access %>
             <% if type == 'Table' %>
               <% if collections.empty? %>
-                  This table doesn't belong to any collection. You can add this table to existing collections in the <a href="/tables/<%= id %>/edit">settings</a>.
+                  This table doesn't belong to any folder. You can add this table to existing folders in the <a href="/tables/<%= id %>/edit">settings</a>.
               <% else %>
                 This table belongs to <%= pluralize(collections.count, "collection") %>.
               <% end %>
             <% elsif type == 'Collection' %>
               <% if tables.empty? %>
-                  This collection doesn't seem to any table. You can add existing tables to this collections in the <a href="/collections/<%= id %>/edit">settings</a>.
+                  This folder doesn't seem to contain any table. You can add existing tables to this folder in the <a href="/collections/<%= id %>/edit">settings</a>.
               <% else %>
-                This collection contains <%= pluralize(tables.count, "table") %>.
+                This folder contains <%= pluralize(tables.count, "table") %>.
               <% end %>
             <% end %>
           <% end %>
