@@ -84,6 +84,13 @@ class TablesController < ApplicationController
   def edit
     if request.post?
       @table.update(name: params[:name], description: params[:description])
+
+      if params[:collections]
+        @table.collections = params[:collections].map { |collection_id| Collection.find_by_id(collection_id) }
+      else
+        @table.collections = []
+      end
+
       flash[:message] = 'Settings has been successfully updated.'
       redirect_to show_table_url(table_id: @table.id) and return
     end
