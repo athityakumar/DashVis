@@ -2,7 +2,8 @@
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=shields)](http://makeapullrequest.com)
 
-DashVis is an open-source Dashboard built with Rails for all users in general. DashVis can be used to organize your resources via `Tables` and `Collections`.
+DashVis is an open-source Dashboard built with Rails for all users in general. DashVis can be used to organize your resources via `Tables` and `Collections`. Feel free to use the [live website](http://dashvis.herokuapp.com).
+
 
  ![image](https://raw.githubusercontent.com/athityakumar/DashVis/master/app/assets/images/dv-fb.png?token=AQUQRPr9-DOdAG_taggB3AIFXLzUfEHaks5aUSUswA%3D%3D)
 
@@ -14,7 +15,6 @@ DashVis is an open-source Dashboard built with Rails for all users in general. D
 - [Pro ways to use DashVis](#pro-ways-to-use-dashvis)
 - [Why is it named DashVis anyway?](#why-is-it-named-dashvis)
 - [Roadmap](#roadmap)
-- [Contributing](#contributing)
 - [License](#license)
 
 # What is DashVis?
@@ -25,15 +25,15 @@ Having surfed on the internet for so long, I came to see multiple web applicatio
 
 This lead to inception of DashVis, and is exactly what DashVis stands for - to provide users with power of managing their data at a single place.
 
-# Is DashVis like Googe Sheets?
+# Is DashVis like Google Sheets?
 
 [(Back to top)](#table-of-contents)
 
 Yes and No.
 
-DashVis tries to mix the traditional CRUD functionality like Google Sheets along with a Dashboard interface (like the stand-alone applications). With a tabular interface, searching and organizing resources is easier.
+Google Sheets is an online way of doing Excel Spreadsheets. Excel Spreadsheets are more inclined for performing calculations and for commercial usage. DashVis tries to mix the traditional CRUD functionality like Google Sheets along with a Dashboard interface (like the stand-alone applications). With a tabular interface, searching and organizing resources is easier.
 
-Though, DashVis is at it's infancy right now. There are lots of potential features that can still be incorporated into DashVis. Have a look at the [Roadmap](#roadmap) or [Issue tracker]() for more details.
+That being said, DashVis is still at it's infancy right now. There are lots of potential features that can still be incorporated into DashVis. Have a look at the [Roadmap](#roadmap) or [Issue tracker](https://github.com/athityakumar/dashvis/issues) for more details.
 
 # How to use DashVis?
 
@@ -65,7 +65,7 @@ Flavouring the tabular data with a little bit of HTML tags can add a zing to you
 - `Vis` is short for Visualization. 
     - Currently, only tabular visualization is supported. However, support for charts visualization is coming soon.
 
-- `DashVis` remotely spells and sounds like Jarvis.
+- `DashVis` remotely spells and sounds like Jarvis. :trollface:
 
 # Roadmap
 
@@ -80,14 +80,11 @@ Flavouring the tabular data with a little bit of HTML tags can add a zing to you
 - [ ] Support scrapers to feed real-time data into a specific Table.
 - [ ] Table-wise timelines
 
-# Contributing
-
-[(Back to top)](#table-of-contents)
-
-Your contributions are always welcome! Please have a look at the [contribution guidelines](CONTRIBUTING.md) first. :tada:
-
 # License
 
 [(Back to top)](#table-of-contents)
 
 The MIT License (MIT) 2018 - [Athitya Kumar](https://github.com/athityakumar/). Please have a look at the [LICENSE.md](LICENSE.md) for more details.
+
+
+**MOST IMPORTANTLY:** If you're planning to use this codebase for any commercial applications, kindly shoot a mail to athityakumar@gmail.com before using the application.
